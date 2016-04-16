@@ -3,18 +3,18 @@ package com.epam.DBController.Entities;
 /**
  * Created by vrama on 16.04.2016.
  */
-public class Users {
+public class User {
     private Long id;
     private String login;
     private String password;
 
-    public Users(Long id, String login, String password) {
+    public User(Long id, String login, String password) {
         this.id = id;
         this.login = login;
         this.password = password;
     }
 
-    public Users(String login, String password) {
+    public User(String login, String password) {
         this.login = login;
         this.password = password;
     }

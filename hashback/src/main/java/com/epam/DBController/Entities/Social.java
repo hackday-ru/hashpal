@@ -3,19 +3,19 @@ package com.epam.DBController.Entities;
 /**
  * Created by vrama on 16.04.2016.
  */
-public class Socials {
+public class Social {
     private Long id;
     private String name;
 
-    public Socials(String name) {
+    public Social(String name) {
         this.name = name;
     }
 
-    public Socials(Long id) {
+    public Social(Long id) {
         this.id = id;
     }
 
-    public Socials(String name, Long id) {
+    public Social(String name, Long id) {
         this.name = name;
         this.id = id;
     }

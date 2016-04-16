@@ -3,11 +3,11 @@ package com.epam.DBController.Entities;
 /**
  * Created by vrama on 16.04.2016.
  */
-public class Tokens {
+public class Token {
     private Long user_id, soc_id;
     private String token;
 
-    public Tokens(Long user_id, Long soc_id, String token) {
+    public Token(Long user_id, Long soc_id, String token) {
         this.user_id = user_id;
         this.soc_id = soc_id;
         this.token = token;
