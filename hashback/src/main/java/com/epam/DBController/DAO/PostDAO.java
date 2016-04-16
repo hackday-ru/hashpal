@@ -5,6 +5,7 @@ import com.epam.DBController.ConnectionPool.PooledConnection;
 import com.epam.DBController.Entities.Post;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -34,7 +35,25 @@ public class PostDAO {
         }
         return true;
     }
-    
+
+    public Post getPostById(Long socialId, String postId) {
+
+        try(PooledConnection conn = PooledConnection.wrap(pool.takeConnection(),
+                pool.getFreeConnections(), pool.getReservedConnections())) {
+            String sql = "SELECT  * FROM post WHERE  social_id=(?) AND post_id =(?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1, socialId);
+            ps.setString(2, postId);
+            ResultSet rs = ps.executeQuery();
+            if (!rs.next()) throw new SQLException();
+
+            return new Post(rs.getLong("id"), rs.getLong("socialId"), rs.getString("postId"), rs.getString("hashtags"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 
