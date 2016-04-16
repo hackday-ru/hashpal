@@ -1,10 +1,12 @@
 export default class hackTagParser {
     constructor() {
         this.hasTags = (text) => {
-            //return tags
+            return text.match('\#(x?[\da-f]+;|(\w+))');
         };
+
         this.cropTags = (text) => {
-          //return tags && text w/o tags  
+            debugger;
+            text.match('\#(x?[\da-f]+;|(\w+))');
         }
     }
 }
