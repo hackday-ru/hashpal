@@ -46,7 +46,10 @@ public class Analysis {
                         rs.getLong("social_Id"),
                         rs.getString("post_Id"),
                         rs.getString("hashtags"),
-                        rs.getTimestamp("tStamp")));
+                        rs.getTimestamp("tStamp"),
+                        rs.getFloat("lat"),
+                        rs.getFloat("long")
+                        ));
             }
 
 
