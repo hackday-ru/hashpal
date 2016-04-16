@@ -24,44 +24,4 @@ public class UserDAO {
     }
     private ConnectionPool pool = ConnectionPool.getInstance();
 
-    public List<Token> getTokensById(Long userID) {
-        List<Token> tokens = new ArrayList<>();
-
-        try(PooledConnection con = PooledConnection.wrap(pool.takeConnection(),
-                pool.getFreeConnections(), pool.getReservedConnections())) {
-            String sql = "SELECT * FROM user_tokens WHERE users.id=(?)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setLong(1, userID);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                tokens.add(new Token(
-                        rs.getLong("user_id"),
-                        rs.getLong("soc_id"),
-                        rs.getString("token")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return Collections.emptyList();
-        }
-        return tokens;
-    }
-
-    public int deleteToken(Long userID, String token) {
-
-        int status = 0;
-
-        try(Connection con = PooledConnection.wrap(pool.takeConnection(),
-                pool.getFreeConnections(), pool.getReservedConnections())) {
-            String sql = "DELETE token FROM user_tokens WHERE users.id=(?) AND user_tokens.token=(?)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setLong(1, userID);
-            ps.setString(2, token);
-            status  = ps.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return status;
-    }
 }
