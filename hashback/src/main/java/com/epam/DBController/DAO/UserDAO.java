@@ -46,4 +46,21 @@ public class UserDAO {
         }
         return tokens;
     }
+
+    public void deleteToken(Long userID, String token) {
+
+        int status = 0;
+
+        try(Connection con = ConnectionFabric.getDataSource().getConnection()) {
+            String sql = "DELETE token FROM user_tokens WHERE users.id=(?) AND user_tokens.token=(?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setLong(1, userID);
+            ps.setString(2, token);
+            status  = ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
