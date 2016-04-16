@@ -51,11 +51,9 @@ public class PostDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return new Post(0L, 0L, "", "");
         }
     }
-
-
-
 
     private PostDAO() {
     }
