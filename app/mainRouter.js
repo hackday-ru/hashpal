@@ -2,6 +2,8 @@ import './states/search/search.template.html';
 import './states/post/post.template.html';
 import './states/home/home.template.html';
 
+import homeController from './states/home/homeController';
+
 export default function mainRouter($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
@@ -16,9 +18,7 @@ export default function mainRouter($stateProvider, $urlRouterProvider) {
             url: '',
             abstract: true,
             template: '<div ui-view></div>',
-            controller: () => {
-                console.log('home');
-            }
+            controller: ($rootScope, vkDataService) => new homeController($rootScope, vkDataService)
         })
         .state('home.search', {
             url: '/search',
