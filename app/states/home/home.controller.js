@@ -1,5 +1,5 @@
 export default class homeController {
-    constructor($rootScope, vkDataService) {
+    constructor($rootScope, vkDataService, utilsService) {
         console.log('mainCtrl');
         this.user = {
             firstName: 'USER_FIRST_NAME',
@@ -9,17 +9,17 @@ export default class homeController {
 
         this.loginVk = () => {
             console.log("clicked vk");
-            vkDataService.loginVk().then(function (data) {
-                console.log(data);
+            vkDataService.loginVk((user) => {
+                this.user.firstName = user.first_name;
+                this.user.lastName = user.last_name;
+                utilsService.safeApply();
+            }, (response) => {
+                console.warn(response);
             });
-
         };
 
-
-        //if (VK.Auth.getSession()) {
-        //
-        //    //https://vk.com/dev/wall.get
-        //
+        // if (VK.Auth.getSession()) {
+        //     //https://vk.com/dev/wall.get
         //    VK.Api.call('wall.get', {owner_id: VK.Auth.getSession().mid, count: 100, v: 5.50}, function (r) {
         //        if (r.response) {
         //            console.log(r);
@@ -28,8 +28,6 @@ export default class homeController {
         //            $scope.$apply();
         //        }
         //    });
-        //}
-
-
+        // }
     }
 }
