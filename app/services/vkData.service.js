@@ -11,9 +11,8 @@ export default class vkDataService {
                     latitude: geo.coords.latitude,
                     longetude: geo.coords.longitude,
                     count: 100,
-                    start_time: geo.timestamp - 30000
+                    start_time: geo.timestamp - 60000
                 }, (r) => {
-                    debugger;
                     if (r.response) {
                         if (angular.isFunction(successCallback)) {
                             successCallback(r.response);
