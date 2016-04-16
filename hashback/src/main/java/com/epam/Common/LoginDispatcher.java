@@ -54,10 +54,17 @@ public class LoginDispatcher {
     }
 
     public Long getSocialId(String name) {
-        return socials.entrySet()
-                .stream()
-                .filter(entry -> entry.getValue().equals(name))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList()).get(1);
+        switch (name) {
+            case "vk":
+                return 1L;
+            case "twitter":
+                return 2L;
+            case "instagram":
+                return 3L;
+            case "facebook":
+                return 4L;
+            default:
+                return 0L;
+        }
     }
 }

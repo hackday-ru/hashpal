@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response;
  * @author Vladislav Boboshko
  */
 
-@Path("search")
+@Path("favorites")
 public class AddFavorite {
 
     @POST
