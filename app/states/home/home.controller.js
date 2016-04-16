@@ -9,9 +9,7 @@ export default class homeController {
 
         this.loginVk = () => {
             console.log("clicked vk");
-            vkDataService.loginVk().then(function (data) {
-                console.log(data);
-            });
+            vkDataService.loginVk();
 
         };
 
