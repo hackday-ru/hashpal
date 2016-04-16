@@ -5,6 +5,9 @@ export default class homeController {
             firstName: 'USER_FIRST_NAME',
             lastName: 'USER_LAST_NAME',
             photoSrc: 'photoSrc'
-        }
+        };
+        this.loginVk = () => {
+            vkDataService.loginVk();
+        };
     }
 }
