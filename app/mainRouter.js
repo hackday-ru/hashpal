@@ -17,8 +17,9 @@ export default function mainRouter($stateProvider, $urlRouterProvider) {
         .state('home', {
             url: '',
             abstract: true,
-            template: '<div ui-view></div>',
-            controller: ($rootScope, vkDataService) => new homeController($rootScope, vkDataService)
+            templateUrl: './states/home/home.template.html',
+            controller: ($rootScope, vkDataService) => new homeController($rootScope, vkDataService),
+            controllerAs: 'ctx'
         })
         .state('home.search', {
             url: '/search',
