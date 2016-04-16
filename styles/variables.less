@@ -1,0 +1,37 @@
+@mainColor: #6078ea;
+@bgColor: #ecf0f1;
+@bgColorContent: #fff;
+@bgColorProfileBox: #2980b9;
+@borderColor: #e2e8ea;
+@widthColLeft: 250px;
+@heightHeader: 60px;
+
+.flex() {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flexbox;
+  display: flex;
+}
+.flex-direction-column() {
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+.justify-content(@distribution) {
+  -webkit-justify-content: @distribution;
+  justify-content: @distribution;
+}
+.flex-grow(@a) {
+  -webkit-flex-grow: @a;
+  flex-grow: @a;
+}
+.align-items(@a) {
+  -webkit-align-items: @a;
+  align-items: @a;
+}
+.border-radius(@a) {
+  -webkit-border-radius: @a;
+  -moz-border-radius: @a;
+  border-radius: @a;
+}
