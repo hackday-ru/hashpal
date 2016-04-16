@@ -1,3 +1,3 @@
 import sidePanel from './sidePanel/sidePanel.directive';
 angular.module('components', [])
-    .directive('sidePanel', () => new sidePanel());
+    .directive('sidePanel', (vkDataService, utilsService) => new sidePanel(vkDataService, utilsService));
