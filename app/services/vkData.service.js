@@ -3,10 +3,10 @@ export default class vkDataService {
         VK.init({
             apiId: networks.vk.appId
         });
-        this.loginVk = (name, pass) => {
+        this.loginVk = () => {
             VK.Auth.getLoginStatus((response) => {
                 if (response.session && response.session.user) {
-                    vkDataFactory.parseAuthRequest(response.session);
+                    //vkDataFactory.parseAuthRequest(response.session);
                     return;
                 }
                 VK.Auth.login((response) => {
@@ -15,7 +15,8 @@ export default class vkDataService {
                         //broadcast an error
                     }
                     if (response.session) {
-                        vkDataFactory.parseAuthRequest(response.session);
+                        //vkDataFactory.parseAuthRequest(response.session);
+                        return response.session;
                     }
                 });
             });
