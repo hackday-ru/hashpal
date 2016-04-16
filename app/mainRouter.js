@@ -7,16 +7,8 @@ import homeController from './states/home/home.controller';
 export default function mainRouter($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
-        .state('layout', {
-            url: '/',
-            template: '<div ui-view>layout</div>',
-            controller: () => {
-                console.log('layout');
-            }
-        })
         .state('home', {
-            url: '',
-            abstract: true,
+            url: '/',
             templateUrl: './states/home/home.template.html',
             controller: ($rootScope, vkDataService) => new homeController($rootScope, vkDataService),
             controllerAs: 'ctx'
