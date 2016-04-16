@@ -27,17 +27,19 @@ public class Analysis {
 
     private ConnectionPool pool = ConnectionPool.getInstance();
 
-    public List<Post> byTime(Timestamp time) {
+    public List<Post> byTime(Timestamp time, int days) {
         List<Post> sortedByTimePosts = new ArrayList<>();
 
         try(PooledConnection conn = PooledConnection.wrap(pool.takeConnection(),
                 pool.getFreeConnections(), pool.getReservedConnections())) {
-            String sql = "SELECT  * FROM post WHERE CURRENT_DATE>=(?) AND CURRENT_DATE<=(?)+ interval '1 day'" +
-                    "ORDER BY social_Id DESC limit 10";
+            String sql = "SELECT * FROM post " +
+                    "WHERE tstamp BETWEEN ((?) - INTERVAL '0.5 day' *(?)) AND ((?) + INTERVAL '0.5 day' * (?));";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setTimestamp(1, time);
-            ps.setTimestamp(2, time);
+            ps.setInt(2, days);
+            ps.setTimestamp(3, time);
+            ps.setInt(4, days);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
@@ -46,7 +48,7 @@ public class Analysis {
                         rs.getLong("social_Id"),
                         rs.getString("post_Id"),
                         rs.getString("hashtags"),
-                        rs.getTimestamp("tStamp"),
+                        rs.getTimestamp("tstamp"),
                         rs.getFloat("lat"),
                         rs.getFloat("lon")
                         ));
