@@ -26,6 +26,11 @@ p {
 .clearfix:after {
   clear: both;
 }
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 .nav {
   position: fixed;
   z-index: 1;
@@ -161,17 +166,24 @@ side-panel {
     margin-bottom: 20px;
     background-color: #fff;
 
-    &-.text {
-      padding: 5px;
+    &-text {
+      padding: 5px 10px;
     }
     &-tags {
+      padding: 5px 10px;
       .flex();
       .align-items(center);
+
       i {
+        margin-right: 10px;
         color: @colorMain;
       }
     }
     &-additional {
+      padding: 5px 10px;
+      .flex();
+      .align-items(center);
+
       i, span {
         margin-right: 10px;
       }
@@ -182,6 +194,7 @@ side-panel {
 .tag {
   display: inline-block;
   padding: 5px;
+  margin-right: 10px;
   background-color: @colorMain;
   color: #fff;
 }
