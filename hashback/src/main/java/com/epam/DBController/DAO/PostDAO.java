@@ -33,7 +33,7 @@ public class PostDAO {
             if (ps.executeUpdate() == 0) throw new SQLException("Nothing was added");
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; 
+            return false;
         }
         return true;
     }

@@ -2,6 +2,7 @@ package com.epam.Common;
 
 import com.epam.DBController.DAOFactory;
 import com.epam.DBController.Entities.User;
+import org.json.simple.JSONObject;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -34,6 +35,7 @@ public class LoginDispatcher {
         if (user.getId() == 0) {
             return false;
         }
+
         if (!(password.equals(user.getPassword()) && login.equals(user.getLogin()))) {
             return false;
         }
