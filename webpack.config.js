@@ -27,7 +27,7 @@ module.exports = {
     },
     watch: true,
     watchOptions: {
-        aggregateTimeoit: 100
+        aggregateTimeout: 100
     }
 };
 
