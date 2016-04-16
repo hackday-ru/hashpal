@@ -15,6 +15,7 @@ body {
   background-color: @bgColor;
 }
 button {
+  width: 100%;
   background: transparent;
 }
 p {
@@ -39,6 +40,19 @@ h2 {
   display: block;
   max-width: 100%;
   height: auto;
+}
+.half {
+  width: 50%;
+  float: left;
+  &.first {
+    padding-right: 2px;
+  }
+  &.second {
+    padding-left: 2px;
+  }
+  button {
+    padding: 5px;
+  }
 }
 .nav {
   position: fixed;
@@ -140,6 +154,10 @@ h2 {
 }
 side-panel {
   top: 75px;
+
+  .post-add {
+    cursor: pointer;
+  }
 }
 .profile-box {
   .flex;
@@ -175,9 +193,6 @@ side-panel {
     height: 40px;
     color: #fff;
     border: 1px solid #fff;
-    &.login {
-      margin-right: 4px;
-    }
   }
 
   .auth {
@@ -261,7 +276,6 @@ side-panel {
   &-item {
     display: inline-block;
     width: 100%;
-    min-height: 200px;
     margin-bottom: 20px;
     background-color: #fff;
 
@@ -328,7 +342,21 @@ side-panel {
     }
   }
   .post-add {
+    min-height: 80px;
+    padding: 0 15px;
     background-color: #fff;
+
+    button {
+      height: @heightIcons;
+      &.add {
+        background-color: @colorAdditional;
+        color: #fff;
+      }
+      &.cancel {
+        color: @colorDark;
+        text-decoration: underline;
+      }
+    }
   }
 }
 .drag {
@@ -336,7 +364,7 @@ side-panel {
   min-height: 200px;
 }
 .map {
-  padding: 5px;
+  padding: 15px;
   background-color: #fff;
 }
 
