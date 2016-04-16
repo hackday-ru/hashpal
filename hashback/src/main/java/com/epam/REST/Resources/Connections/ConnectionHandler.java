@@ -2,6 +2,8 @@ package com.epam.REST.Resources.Connections;
 
 import com.epam.Common.LoginDispatcher;
 import com.epam.Common.RequestReader;
+import com.epam.DBController.DAOFactory;
+import com.epam.DBController.Entities.Token;
 import com.epam.DBController.Entities.User;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -35,9 +37,13 @@ public class ConnectionHandler {
         }
         try {
             JSONObject jsonRequest = (JSONObject) new JSONParser().parse(RequestReader.readRequestBody(requestContext));
-            Long id = LoginDispatcher.getInstance().getSocialId((String)jsonRequest.get("social"));
+            Long userId = ((User) requestContext.getSession().getAttribute("user")).getId();
+            Long socialId = LoginDispatcher.getInstance().getSocialId((String)jsonRequest.get("social"));
             String token = (String) jsonRequest.get("token");
-            // TODO: 16/04/16 add token
+            if (!DAOFactory.getTokenDAO().addToken(new Token(userId, socialId, token))) {
+                jsonResponse.put("result", "Пошел на хуй");
+                return Response.status(400).entity(jsonResponse.toJSONString()).build();
+            }
         } catch (ParseException e) {
             jsonResponse.put("result", "bad request");
             return Response.status(400).entity(jsonResponse.toJSONString()).build();
@@ -58,10 +64,10 @@ public class ConnectionHandler {
         }
         Long socialId = LoginDispatcher.getInstance().getSocialId(socialName);
         if (socialId == 0) {
-            jsonResponse.put("result", "unauthorized");
+            jsonResponse.put("result", "bad request");
             return Response.status(400).entity(jsonResponse.toJSONString()).build();
         }
-        // TODO: 16/04/16 remove token
+        DAOFactory.getTokenDAO().deleteToken(((User) requestContext.getSession().getAttribute("name")).getId(), socialId);
         jsonResponse.put("result", "success");
         return Response.ok().entity(jsonResponse.toJSONString()).build();
     }

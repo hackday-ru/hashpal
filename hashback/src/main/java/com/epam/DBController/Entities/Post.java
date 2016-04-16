@@ -1,5 +1,7 @@
 package com.epam.DBController.Entities;
 
+import com.sun.tools.corba.se.idl.constExpr.Times;
+
 import java.sql.Timestamp;
 
 /**
@@ -14,10 +16,11 @@ public class Post {
     String hashtags;
     Timestamp time;
 
-    public Post(Long socialId, String postId, String hashtags) {
+    public Post(Long socialId, String postId, String hashtags, Timestamp time) {
         this.socialId = socialId;
         this.postId = postId;
         this.hashtags = hashtags;
+        this.time = time;
     }
 
     public Post(Long id, Long socialId, String postId, String hashtags, Timestamp time) {
