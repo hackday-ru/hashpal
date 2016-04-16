@@ -6,4 +6,6 @@ angular.module('components', [])
     .directive('sidePanel', (vkDataService, utilsService) =>
         new sidePanel(vkDataService, utilsService))
     .directive('posts', () => new posts())
-    .directive('postItem', () => new postItem());
+    .directive('postItem', () => new postItem())
+    .directive('sidePanel', (vkDataService, utilsService, toaster) =>
+        new sidePanel(vkDataService, utilsService, toaster));

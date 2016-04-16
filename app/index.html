@@ -7,11 +7,13 @@
     <script src="/build/bundle.js"></script>
     <link href='/external/roboto.css' rel='stylesheet' type='text/css'>
     <link href='/external/font-awesome/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link href='/external/toaster.min.css' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
 <div ng-app="app">
+    <toaster-container toaster-options="{'time-out': 3000, 'close-button': true}"></toaster-container>
     <button ui-sref="home.post">post</button>
     <button ui-sref="home.search">search</button>
     <div class="nav clearfix">
