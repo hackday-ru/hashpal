@@ -1,4 +1,4 @@
-package com.epam.DBController.Entities.DAO;
+package com.epam.DBController.DAO;
 
 import com.epam.DBController.ConnectionFabric;
 import com.epam.DBController.Entities.Token;
@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,13 +24,10 @@ public class UserDAO {
                     "WHERE users.id = " + userID + "AND users.id = user_tokens.user_id");
             ResultSet rs = ps.executeQuery();
 
-            while(rs.next()) {
-                Token token = new Token();
-                token.setToken(rs.getString(1));
-                tokens.add(token);
-            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
+            return Collections.emptyList();
         }
 
         return tokens;
