@@ -4,29 +4,34 @@ package com.epam.DBController.Entities;
  * Created by vrama on 16.04.2016.
  */
 public class Token {
-    private Long user_id, soc_id;
+    private Long userID, socID;
     private String token;
 
-    public Token(Long user_id, Long soc_id, String token) {
-        this.user_id = user_id;
-        this.soc_id = soc_id;
+
+    public Token() {
+    }
+
+
+    public Token(Long userID, Long socID, String token) {
+        this.userID = userID;
+        this.socID = socID;
         this.token = token;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserID() {
+        return userID;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserID(Long userID) {
+        this.userID = userID;
     }
 
-    public Long getSoc_id() {
-        return soc_id;
+    public Long getSocID() {
+        return socID;
     }
 
-    public void setSoc_id(Long soc_id) {
-        this.soc_id = soc_id;
+    public void setSocID(Long socID) {
+        this.socID = socID;
     }
 
     public String getToken() {
