@@ -26,6 +26,11 @@ p {
 .clearfix:after {
   clear: both;
 }
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 .nav {
   position: fixed;
   z-index: 1;
@@ -145,12 +150,15 @@ side-panel {
 
 .posts {
   padding: 30px 22px;
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
-  column-count: 3;
+  .column(3);
   -webkit-column-gap: 20px;
   -moz-column-gap: 20px;
   column-gap: 20px;
+
+  i {
+    font-size: 17px;
+  }
+
   &-item {
     display: inline-block;
     width: 100%;
@@ -158,20 +166,40 @@ side-panel {
     margin-bottom: 20px;
     background-color: #fff;
 
-    &-.text {
-      padding: 5px;
+    &-text {
+      padding: 5px 10px;
     }
+    &-tags {
+      padding: 5px 10px;
+      .flex();
+      .align-items(center);
 
-    .tag {
-      display: inline-block;
-      padding: 5px;
-      background-color: @colorMain;
-      color: #fff;
+      i {
+        margin-right: 10px;
+        color: @colorMain;
+      }
+    }
+    &-additional {
+      padding: 5px 10px;
+      .flex();
+      .align-items(center);
+
+      i, span {
+        margin-right: 10px;
+      }
     }
   }
 }
 
-@media screen and (max-width: 768px){
+.tag {
+  display: inline-block;
+  padding: 5px;
+  margin-right: 10px;
+  background-color: @colorMain;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
   .col-left {
     width: 98px;
   }
@@ -180,5 +208,13 @@ side-panel {
   }
   .logo span, .post-add span {
     display: none;
+  }
+  .posts {
+    .column(2);
+  }
+}
+@media screen and (max-width: 600px) {
+  .posts {
+    .column(1);
   }
 }
