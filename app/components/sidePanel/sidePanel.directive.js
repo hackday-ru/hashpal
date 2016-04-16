@@ -6,9 +6,7 @@ export default class sidePanel {
             name: 'sidePanel',
             restrict: 'E',
             scope: {
-                firstName: '=',
-                surName: '=',
-                photoSrc: '='
+                user: '='
             },
             templateUrl: './components/sidePanel/sidePanel.template.html',
             link: ($scope) => {
