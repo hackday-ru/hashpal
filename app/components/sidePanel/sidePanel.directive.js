@@ -22,14 +22,9 @@ export default class sidePanel {
 }
 
 class sidePanelController {
-    constructor(vkDataService, utilsService, toaster) {
+    constructor(vkDataService, utilsService, toaster, errors) {
         this.loginVk = () => {
-            toaster.pop({
-                type: 'error',
-                title: 'aaaaaaaaaaaaaa ',
-                body: 'Мы все умрём!!!!!!!!!!!',
-                timeout: 3000
-            });
+
             this.blockVkLogin = true;
             console.log("clicked vk");
             vkDataService.loginVk((user) => {
@@ -38,6 +33,12 @@ class sidePanelController {
                 this.blockVkLogin = false;
                 utilsService.safeApply();
             }, (response) => {
+                toaster.pop({
+                    type: 'error',
+                    title: 'Ошибка ',
+                    body: 'errors.vkLoginError',
+                    timeout: 3000
+                });
                 console.warn(response);
                 this.blockVkLogin = false;
                 utilsService.safeApply();

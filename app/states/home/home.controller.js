@@ -2,9 +2,9 @@ export default class homeController {
     constructor($rootScope, vkDataService, utilsService) {
         console.log('mainCtrl');
         this.user = {
-            firstName: 'USER_FIRST_NAME',
-            lastName: 'USER_LAST_NAME',
-            photoSrc: 'photoSrc'
+            firstName: '',
+            lastName: '',
+            photoSrc: ''
         };
 
         // if (VK.Auth.getSession()) {
