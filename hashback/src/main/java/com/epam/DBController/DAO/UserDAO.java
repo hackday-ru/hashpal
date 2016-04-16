@@ -3,6 +3,7 @@ package com.epam.DBController.DAO;
 import com.epam.DBController.ConnectionPool.ConnectionPool;
 import com.epam.DBController.ConnectionPool.PooledConnection;
 import com.epam.DBController.Entities.Token;
+import com.epam.DBController.Entities.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,44 +25,18 @@ public class UserDAO {
     }
     private ConnectionPool pool = ConnectionPool.getInstance();
 
-    public List<Token> getTokensById(Long userID) {
-        List<Token> tokens = new ArrayList<>();
-
-        try(PooledConnection con = PooledConnection.wrap(pool.takeConnection(),
+    public boolean addUser(User user) {
+        try (PooledConnection conn = PooledConnection.wrap(pool.takeConnection(),
                 pool.getFreeConnections(), pool.getReservedConnections())) {
-            String sql = "SELECT * FROM user_tokens WHERE users.id=(?)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setLong(1, userID);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                tokens.add(new Token(
-                        rs.getLong("user_id"),
-                        rs.getLong("soc_id"),
-                        rs.getString("token")));
-            }
+            String sql = "INSERT INTO users (login, password) VALUES (?,?);";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getLogin());
+            ps.setString(2, user.getPassword());
+            if (ps.executeUpdate() == 0) throw new SQLException("Nothing was added");
         } catch (SQLException e) {
             e.printStackTrace();
-            return Collections.emptyList();
+            return false;
         }
-        return tokens;
-    }
-
-    public int deleteToken(Long userID, String token) {
-
-        int status = 0;
-
-        try(Connection con = PooledConnection.wrap(pool.takeConnection(),
-                pool.getFreeConnections(), pool.getReservedConnections())) {
-            String sql = "DELETE token FROM user_tokens WHERE users.id=(?) AND user_tokens.token=(?)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setLong(1, userID);
-            ps.setString(2, token);
-            status  = ps.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return status;
+        return true;
     }
 }
