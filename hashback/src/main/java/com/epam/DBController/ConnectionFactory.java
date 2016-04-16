@@ -5,8 +5,8 @@ import javax.sql.DataSource;
 /**
  * Created by vrama on 16.04.2016.
  */
-public class ConnectionFabric {
-    private static ConnectionFabric ourInstance = new ConnectionFabric();
+public class ConnectionFactory {
+    private static ConnectionFactory ourInstance = new ConnectionFactory();
 
     public static DataSource getDataSource() {
 
@@ -19,6 +19,6 @@ public class ConnectionFabric {
         return ds;
     }
 
-    private ConnectionFabric() {
+    private ConnectionFactory() {
     }
 }

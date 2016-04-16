@@ -1,6 +1,8 @@
 package com.epam.DBController.DAO;
 
-import com.epam.DBController.ConnectionFabric;
+import com.epam.DBController.ConnectionFactory;
+import com.epam.DBController.ConnectionPool.ConnectionPool;
+import com.epam.DBController.ConnectionPool.PooledConnection;
 import com.epam.DBController.Entities.Token;
 
 import java.sql.Connection;
@@ -16,10 +18,18 @@ import java.util.List;
  */
 public class UserDAO {
 
+    private UserDAO() {}
+    private static UserDAO instance;
+    public static UserDAO getInstance() {
+        return (instance==null)?(instance = new UserDAO()):instance;
+    }
+    private ConnectionPool pool = ConnectionPool.getInstance();
+
     public List<Token> getTokensById(Long userID) {
         List<Token> tokens = new ArrayList<>();
 
-        try(Connection con = ConnectionFabric.getDataSource().getConnection()) {
+        try(PooledConnection con = PooledConnection.wrap(pool.takeConnection(),
+                pool.getFreeConnections(), pool.getReservedConnections())) {
             String sql = "SELECT * FROM user_tokens WHERE users.id=(?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setLong(1, userID);
