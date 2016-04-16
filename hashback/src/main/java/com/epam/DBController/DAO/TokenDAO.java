@@ -1,7 +1,5 @@
 package com.epam.DBController.DAO;
 
-import com.epam.DBController.ConnectionFactory;
-
 /**
  * Created by vrama on 16.04.2016.
  */
