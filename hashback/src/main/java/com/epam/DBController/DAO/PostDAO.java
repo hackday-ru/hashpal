@@ -52,7 +52,6 @@ public class PostDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
 
