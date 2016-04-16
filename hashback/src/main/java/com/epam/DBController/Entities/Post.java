@@ -1,5 +1,7 @@
 package com.epam.DBController.Entities;
 
+import java.sql.Timestamp;
+
 /**
  * Created on 16/04/16.
  *
@@ -10,6 +12,7 @@ public class Post {
     Long socialId;
     String postId;
     String hashtags;
+    Timestamp time;
 
     public Post(Long socialId, String postId, String hashtags) {
         this.socialId = socialId;
@@ -17,11 +20,20 @@ public class Post {
         this.hashtags = hashtags;
     }
 
-    public Post(Long id, Long socialId, String postId, String hashtags) {
+    public Post(Long id, Long socialId, String postId, String hashtags, Timestamp time) {
         this.id = id;
         this.socialId = socialId;
         this.postId = postId;
         this.hashtags = hashtags;
+        this.time = time;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
     }
 
     public Long getId() {
