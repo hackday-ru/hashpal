@@ -2,7 +2,7 @@ import './states/search/search.template.html';
 import './states/post/post.template.html';
 import './states/home/home.template.html';
 
-import homeController from './states/home/homeController';
+import homeController from './states/home/home.controller';
 
 export default function mainRouter($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
