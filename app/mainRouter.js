@@ -4,6 +4,7 @@ import './states/home/home.template.html';
 
 import searchController from './states/search/search.controller';
 import homeController from './states/home/home.controller';
+import postController from './states/post/post.controller';
 
 export default function mainRouter($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -24,6 +25,9 @@ export default function mainRouter($stateProvider, $urlRouterProvider) {
         })
         .state('home.post', {
             url: 'post',
-            templateUrl: './states/post/post.template.html'
+            templateUrl: './states/post/post.template.html',
+            controller: ($scope, $rootScope, vkDataService, toaster, errors) =>
+                new postController($scope, $rootScope, vkDataService, toaster, errors),
+            controllerAs: 'ctx'
         });
 }
