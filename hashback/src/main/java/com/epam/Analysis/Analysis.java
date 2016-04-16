@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,6 +24,7 @@ public class Analysis {
 
     private Analysis() {
     }
+
     private ConnectionPool pool = ConnectionPool.getInstance();
 
     public List<Post> byTime(Timestamp time) {
@@ -30,21 +32,32 @@ public class Analysis {
 
         try(PooledConnection conn = PooledConnection.wrap(pool.takeConnection(),
                 pool.getFreeConnections(), pool.getReservedConnections())) {
-            String sql = "BEGIN " +
-                    "SELECT  * FROM post WHERE  CURRENT_DATE tStamp=(?)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setLong(1, time);
-            ResultSet rs = ps.executeQuery();
-            if (!rs.next()) throw new SQLException();
+            String sql = "SELECT  * FROM post WHERE CURRENT_DATE>=(?) AND CURRENT_DATE<=(?)+ interval '1 day'" +
+                    "ORDER BY social_Id DESC limit 10";
 
-            return new Post(rs.getLong("id"), rs.getLong("socialId"), rs.getString("postId"), rs.getString("hashtags"),
-                    rs.getTimestamp("tStamp"));
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setTimestamp(1, time);
+            ps.setTimestamp(2, time);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                sortedByTimePosts.add(new Post(
+                        rs.getLong("id"),
+                        rs.getLong("social_Id"),
+                        rs.getString("post_Id"),
+                        rs.getString("hashtags"),
+                        rs.getTimestamp("tStamp")));
+            }
+
+
+            if (!rs.next()) throw new SQLException();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return new Post(0L, 0L, "", "", new Timestamp(0));
+            return Collections.emptyList();
         }
 
+        return sortedByTimePosts;
     }
 
     public List<Post> byPlace() {
