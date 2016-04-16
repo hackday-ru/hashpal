@@ -11,6 +11,7 @@ export default class vkDataService {
                     latitude: geo.coords.latitude,
                     longetude: geo.coords.longitude,
                     count: 100,
+                    v: '5.50',
                     start_time: geo.timestamp - 60000
                 }, (r) => {
                     if (r.response) {
