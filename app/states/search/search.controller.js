@@ -5,9 +5,9 @@ export default class searchController {
                 for (let item of data.items) {
                     console.log(item.text);
                     if (postsParser.hasText(item)) {
-                        if (hashtagParser.hasTags(item.text)) {
+                        // if (hashtagParser.hasTags(item.text)) {
                             this.posts.push(item);
-                        }
+                        // }
                     }
                 }
                 if (this.posts.length === 0) {

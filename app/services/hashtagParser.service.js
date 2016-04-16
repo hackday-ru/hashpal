@@ -6,8 +6,10 @@ export default class hackTagParser {
 
         this.cropTags = (text) => {
             let tags = text.match(/(^|\s)(#[a-z\d-]+)/ig);
-            for (let tag of tags) {
-                text = text.slice(text.indexOf(tag), tag.length);
+            if (tags && tags.length > 0) {
+                for (let tag of tags) {
+                    text = text.slice(text.indexOf(tag), tag.length);
+                }
             }
             return {
                 postText: text,
