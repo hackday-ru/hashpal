@@ -19,7 +19,8 @@ export default function mainRouter($stateProvider, $urlRouterProvider) {
             url: 'search',
             templateUrl: './states/search/search.template.html',
             controller: ($scope, $rootScope, vkDataService) =>
-                new searchController($scope, $rootScope, vkDataService)
+                new searchController($scope, $rootScope, vkDataService),
+            controllerAs: 'ctx'
         })
         .state('home.post', {
             url: 'post',
