@@ -1,12 +1,13 @@
-<div class="col-left">
-    <div class="flex-container">
-        <div class="post-add">
-            <i class="fa fa-plus" aria-hidden="true"></i> Новый пост
-        </div>
-        <div class="profile-box">
-            <label>{{user.firstName}}</label>
-            <label>{{user.lastName}}</label>
-            <!--USER-->
-        </div>
+<div class="flex-container">
+    <div class="post-add">
+        <i class="fa fa-plus" aria-hidden="true"></i> <span>Новый пост</span>
+    </div>
+    <div class="social-buttons">
+        <button ng-click="ctx.loginVk()">login vk</button>
+    </div>
+    <div class="profile-box">
+        <label>{{user.firstName}}</label>
+        <label>{{user.lastName}}</label>
+        <!--USER-->
     </div>
 </div>

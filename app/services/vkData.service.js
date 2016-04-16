@@ -34,8 +34,10 @@ export default class vkDataService {
         };
 
         this.loginVk = (successCallback, failCallback) => {
+            //debugger;
             VK.Auth.getLoginStatus((response) => {
                 if (response.session && response.session.user) {
+                    //debugger;
                     if (angular.isFunction(successCallback)) {
                         successCallback(response.session.user);
                     }
@@ -51,7 +53,7 @@ export default class vkDataService {
                         //broadcast an error
                     }
                     if (response.session) {
-                        //vkDataFactory.parseAuthRequest(response.session);
+                        successCallback(response.session.user);
                         return response.session;
                     }
                 });
