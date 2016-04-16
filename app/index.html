@@ -7,17 +7,18 @@
     <script src="/build/bundle.js"></script>
     <link href='/external/roboto.css' rel='stylesheet' type='text/css'>
     <link href='/external/font-awesome/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link href='/external/toaster.min.css' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
 <body>
 
 <div ng-app="app">
-    <button ui-sref="home.post">post</button>
+    <toaster-container toaster-options="{'time-out': 3000, 'close-button': true}"></toaster-container>
     <button ui-sref="home.search">search</button>
     <div class="nav clearfix">
         <div class="col-left logo">
-            <div class="logo-img"><img src="img/logo2x.png" alt="#hashpal"></div> <span>hashpal</span>
+            <div class="logo-img"><img src="img/logo2x.png" alt="#hashpal"></div>
+            <span>hashpal</span>
         </div>
         <div class="col-right search">
             <div class="search-box">

@@ -4,6 +4,7 @@ import './states/home/home.template.html';
 
 import searchController from './states/search/search.controller';
 import homeController from './states/home/home.controller';
+import postController from './states/post/post.controller';
 
 export default function mainRouter($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -18,11 +19,15 @@ export default function mainRouter($stateProvider, $urlRouterProvider) {
         .state('home.search', {
             url: 'search',
             templateUrl: './states/search/search.template.html',
-            controller: ($scope, $rootScope, vkDataService) =>
-                new searchController($scope, $rootScope, vkDataService)
+            controller: (utilsService, $scope, $rootScope, vkDataService, hashtagParser, postsParser) =>
+                new searchController(utilsService, $scope, $rootScope, vkDataService, hashtagParser, postsParser),
+            controllerAs: 'ctx'
         })
         .state('home.post', {
             url: 'post',
-            templateUrl: './states/post/post.template.html'
+            templateUrl: './states/post/post.template.html',
+            controller: ($scope, $rootScope, vkDataService, toaster, errors, utilsService) =>
+                new postController($scope, $rootScope, vkDataService, toaster, errors, utilsService),
+            controllerAs: 'ctx'
         });
 }
