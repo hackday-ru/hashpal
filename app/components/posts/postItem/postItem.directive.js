@@ -28,9 +28,9 @@ class postItemController {
                 Object.keys(this.postItem.attachments[0]).indexOf('photo') > -1) {
             this.imgSrc = this.postItem.attachments[0].photo.photo_604;
         }
-        let text = '',
-            tags = [];
-        [text, tags] = hashtagParser.cropTags(this.postItem.text);
+        let obj = hashtagParser.cropTags(this.postItem.text);
+        this.postText = obj.postText;
+        this.postTags = obj.postTags;
         console.log(this.postItem);
     }
 }

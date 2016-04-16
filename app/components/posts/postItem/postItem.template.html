@@ -1,12 +1,11 @@
 <div class="posts-item">
     <div class="posts-item-img" ng-if="ctx.imgSrc !== null">
-        <img ng-src="ctx.imgSrc" class="img-responsive">
+        <img ng-src="{{ctx.imgSrc}}" class="img-responsive">
     </div>
-    <div class="posts-item-text"></div>
+    <div class="posts-item-text">{{ctx.postText}}</div>
     <div class="posts-item-tags">
         <i class="fa fa-tag" aria-hidden="true"></i>
-        <div class="tag"></div> <!--first sample tag-->
-        <div class="tag"></div> <!--second sample tag-->
+        <div class="tag" ng-repeat="tag in ctx.postTags">{{tag}}</div>
     </div>
     <div class="posts-item-additional">
         <i class="fa fa-heart" aria-hidden="true"></i> <span class="likes"></span>

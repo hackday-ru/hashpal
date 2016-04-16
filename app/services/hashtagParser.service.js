@@ -1,12 +1,18 @@
 export default class hackTagParser {
     constructor() {
         this.hasTags = (text) => {
-            return text.match('\#(x?[\da-f]+;|(\w+))');
+            return text.match(/(^|\s)(#[a-z\d-]+)/ig);
         };
 
         this.cropTags = (text) => {
-            debugger;
-            text.match('\#(x?[\da-f]+;|(\w+))');
+            let tags = text.match(/(^|\s)(#[a-z\d-]+)/ig);
+            for (let tag of tags) {
+                text = text.slice(text.indexOf(tag), tag.length);
+            }
+            return {
+                postText: text,
+                postTags: tags
+            };
         }
     }
 }
