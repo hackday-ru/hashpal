@@ -1,6 +1,5 @@
 package com.epam.DBController.DAO;
 
-import com.epam.DBController.ConnectionFactory;
 import com.epam.DBController.ConnectionPool.ConnectionPool;
 import com.epam.DBController.ConnectionPool.PooledConnection;
 import com.epam.DBController.Entities.Token;
@@ -47,7 +46,7 @@ public class TokenDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setLong(1, socialId);
             ps.setLong(2, userId);
-            if (ps.executeUpdate() == 0) throw new SQLException("Nothing was added")
+            if (ps.executeUpdate() == 0) throw new SQLException("Nothing was added");
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

@@ -1,6 +1,5 @@
 package com.epam.DBController.DAO;
 
-import com.epam.DBController.ConnectionFactory;
 import com.epam.DBController.ConnectionPool.ConnectionPool;
 import com.epam.DBController.ConnectionPool.PooledConnection;
 import com.epam.DBController.Entities.Token;
@@ -47,11 +46,12 @@ public class UserDAO {
         return tokens;
     }
 
-    public void deleteToken(Long userID, String token) {
+    public int deleteToken(Long userID, String token) {
 
         int status = 0;
 
-        try(Connection con = ConnectionFabric.getDataSource().getConnection()) {
+        try(Connection con = PooledConnection.wrap(pool.takeConnection(),
+                pool.getFreeConnections(), pool.getReservedConnections())) {
             String sql = "DELETE token FROM user_tokens WHERE users.id=(?) AND user_tokens.token=(?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setLong(1, userID);
@@ -62,5 +62,6 @@ public class UserDAO {
             e.printStackTrace();
         }
 
+        return status;
     }
 }
