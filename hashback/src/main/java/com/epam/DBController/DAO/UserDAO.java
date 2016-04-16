@@ -20,16 +20,20 @@ public class UserDAO {
         List<Token> tokens = new ArrayList<>();
 
         try(Connection con = ConnectionFabric.getDataSource().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT token FROM user_tokens, users" +
-                    "WHERE users.id = " + userID + "AND users.id = user_tokens.user_id");
+            String sql = "SELECT * FROM user_tokens WHERE users.id=(?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setLong(1, userID);
             ResultSet rs = ps.executeQuery();
-
-            
+            while (rs.next()) {
+                tokens.add(new Token(
+                        rs.getLong("user_id"),
+                        rs.getLong("soc_id"),
+                        rs.getString("token")));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return Collections.emptyList();
         }
-
         return tokens;
     }
 }
