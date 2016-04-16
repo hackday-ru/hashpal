@@ -37,7 +37,7 @@ public class UserDAO {
         return tokens;
     }
 
-    public void deleteToken(Long userID, String token) {
+    public int deleteToken(Long userID, String token) {
 
         int status = 0;
 
@@ -52,5 +52,6 @@ public class UserDAO {
             e.printStackTrace();
         }
 
+        return status;
     }
 }
