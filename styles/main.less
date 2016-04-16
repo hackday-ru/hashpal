@@ -1,0 +1,44 @@
+@import "variables";
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+body {
+  background-color: @bgColor;
+}
+p {
+
+}
+.nav {
+  height: 60px;
+  background-color: #6078EA;
+}
+.container {
+  position: relative;
+  height: calc~('100vh - 60px');
+  margin: 0 auto;
+}
+.col {
+  &-left {
+    float: left;
+    width: @widthColLeft;
+    height: inherit;
+  }
+  &-right {
+    height: inherit;
+    border-left: 1px @borderColor solid;
+    border-right: 1px @borderColor solid;
+    margin-left: @widthColLeft;
+    background-color: @bgColorColRight;
+  }
+}
+.profile-box {
+  height: @heightHeader;
+  background-color: @bgColorProfileBox;
+}
