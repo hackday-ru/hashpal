@@ -43,7 +43,9 @@ public class AddPost {
                     (Long) jsonRequest.get("socialId"),
                     (String) jsonRequest.get("postId"),
                     (String) jsonRequest.get("hashtags"),
-                    new Timestamp((Long) jsonRequest.get("timestamp")));
+                    new Timestamp((Long) jsonRequest.get("timestamp")),
+                    (Float) jsonRequest.get("lat"),
+                    (Float) jsonRequest.get("lon"));
         } catch (ParseException e) {
             jsonResponse.put("result", "bad request");
             return Response.status(400).entity(jsonResponse.toJSONString()).build();
