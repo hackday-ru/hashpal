@@ -13,7 +13,7 @@ export default class sidePanel {
             },
             templateUrl: './components/sidePanel/sidePanel.template.html',
             link: ($scope) => {
-                console.log($scope);
+                //console.log($scope);
             },
             controller: sidePanelController,
             controllerAs: "sidePanelCtrl"
@@ -23,17 +23,18 @@ export default class sidePanel {
 
 class sidePanelController {
     constructor(vkDataService, utilsService) {
-        var extUser = this.user;
         this.loginVk = () => {
+            this.blockVkLogin = true;
             console.log("clicked vk");
             vkDataService.loginVk((user) => {
-                extUser.firstName = user.first_name;
-                extUser.lastName = user.last_name;
-                console.log(extUser);
+                this.user.firstName = user.first_name;
+                this.user.lastName = user.last_name;
+                this.blockVkLogin = false;
                 utilsService.safeApply();
-                //$rootScope.$apply();
             }, (response) => {
                 console.warn(response);
+                this.blockVkLogin = false;
+                utilsService.safeApply();
             });
         };
     }
