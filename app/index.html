@@ -14,32 +14,15 @@
 <div ng-app="app">
     <button ui-sref="home.post">post</button>
     <button ui-sref="home.search">search</button>
-    <div ui-view></div>
-</div>
-
-<div class="container">
-    <div class="col-left">
-        <div class="flex-container">
-            <div class="post-add">
-                <i class="fa fa-plus" aria-hidden="true"></i> Новый пост
-            </div>
-            <div class="profile-box">
-                Nick night
-            </div>
+    <div class="nav clearfix">
+        <div class="col-left logo">
+            hashpal
+        </div>
+        <div class="col-right search">
+            <input type="text">
         </div>
     </div>
-    <div class="col-right">
-        <div class="posts">
-            <div class="posts-item"></div>
-            <div class="posts-item"></div>
-            <div class="posts-item"></div>
-            <div class="posts-item"></div>
-            <div class="posts-item"></div>
-            <div class="posts-item"></div>
-            <div class="posts-item"></div>
-            <div class="posts-item"></div>
-            <div class="posts-item"></div>
-            <div class="posts-item"></div>
-        </div>
+    <div ui-view class="container">
+
     </div>
 </div>
