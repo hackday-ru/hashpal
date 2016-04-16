@@ -2,7 +2,7 @@ import './states/search/search.template.html';
 import './states/post/post.template.html';
 import './states/home/home.template.html';
 
-import homeController from './states/home/homeController';
+import homeController from './states/home/home.controller';
 
 export default function mainRouter($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -17,8 +17,9 @@ export default function mainRouter($stateProvider, $urlRouterProvider) {
         .state('home', {
             url: '',
             abstract: true,
-            template: '<div ui-view></div>',
-            controller: ($rootScope, vkDataService) => new homeController($rootScope, vkDataService)
+            templateUrl: './states/home/home.template.html',
+            controller: ($rootScope, vkDataService) => new homeController($rootScope, vkDataService),
+            controllerAs: 'ctx'
         })
         .state('home.search', {
             url: '/search',
