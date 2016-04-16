@@ -24,7 +24,7 @@ public class UserDAO {
         return (instance==null)?(instance = new UserDAO()):instance;
     }
     private ConnectionPool pool = ConnectionPool.getInstance();
-    
+
     public boolean addUser(User user) {
         try (PooledConnection conn = PooledConnection.wrap(pool.takeConnection(),
                 pool.getFreeConnections(), pool.getReservedConnections())) {
