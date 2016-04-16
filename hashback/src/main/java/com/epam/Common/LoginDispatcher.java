@@ -1,5 +1,8 @@
 package com.epam.Common;
 
+import com.epam.DBController.DAOFactory;
+import com.epam.DBController.Entities.User;
+
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,13 +30,15 @@ public class LoginDispatcher {
     private HashMap<Long, String> socials;
 
     public boolean authorize(HttpSession session, String login, String password) {
-        // TODO: 16/04/16 get user entity from dao by login
-        String def = "whynot";
-        if (!(password.equals(def) && login.equals(def))) {
+        User user = DAOFactory.getUserDAO().getUserById(login);
+        if (user.getId() == 0) {
             return false;
         }
-        // TODO: 16/04/16 before setting entity into session remove passwd
-        session.setAttribute("user", new Object()); //set entity here
+        if (!(password.equals(user.getPassword()) && login.equals(user.getLogin()))) {
+            return false;
+        }
+        user.setPassword("");
+        session.setAttribute("user", user);
         session.setMaxInactiveInterval(0);
         return true;
     }

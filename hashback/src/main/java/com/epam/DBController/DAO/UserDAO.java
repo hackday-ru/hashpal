@@ -39,4 +39,36 @@ public class UserDAO {
         }
         return true;
     }
+
+    public User getUserById(Long id) {
+        try (PooledConnection conn = PooledConnection.wrap(pool.takeConnection(),
+                pool.getFreeConnections(), pool.getReservedConnections())) {
+            String sql = "SELECT * FROM users where id=(?);";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (!rs.next()) throw new SQLException("User not found");
+            User user = new User(rs.getLong("id"), rs.getString("login"), rs.getString("password"));
+            return user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new User(0L, "", "");
+        }
+    }
+
+    public User getUserById(String login) {
+        try (PooledConnection conn = PooledConnection.wrap(pool.takeConnection(),
+                pool.getFreeConnections(), pool.getReservedConnections())) {
+            String sql = "SELECT * FROM users where login=(?);";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, login);
+            ResultSet rs = ps.executeQuery();
+            if (!rs.next()) throw new SQLException("User not found");
+            User user = new User(rs.getLong("id"), rs.getString("login"), rs.getString("password"));
+            return user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new User(0L, "", "");
+        }
+    }
 }

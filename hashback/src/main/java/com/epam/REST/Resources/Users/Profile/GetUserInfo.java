@@ -36,7 +36,7 @@ public class GetUserInfo {
         List<Token> tokenList = Collections.emptyList();
         for (Token i:tokenList) {
             JSONObject token = new JSONObject();
-            token.put("social", LoginDispatcher.getInstance().getSocialName(i.getSoc_id()));
+            token.put("social", LoginDispatcher.getInstance().getSocialName(i.getSocID()));
             token.put("token", i.getToken());
             tokens.add(token);
         }

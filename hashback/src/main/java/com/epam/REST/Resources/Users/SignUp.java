@@ -1,6 +1,8 @@
 package com.epam.REST.Resources.Users;
 
 import com.epam.Common.LoginDispatcher;
+import com.epam.DBController.DAOFactory;
+import com.epam.DBController.Entities.User;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -44,8 +46,7 @@ public class SignUp {
             jsonResponse.put("result", "Wrong request");
             return Response.status(400).entity(jsonResponse.toJSONString()).build();
         }
-        // TODO: 16/04/16 check user creation
-        if (false) {
+        if (!DAOFactory.getUserDAO().addUser(new User(login, password))) {
             jsonResponse.put("result", "user exists or something wrong");
             return Response.ok().entity(jsonResponse.toJSONString()).build();
         }

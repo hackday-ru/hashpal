@@ -35,17 +35,12 @@ public class ConnectionPool {
 
     private ConnectionPool() {
         Properties properties = new Properties();
-        try {
-            properties.load(new FileInputStream("/Users/endiny/workspace/MagazineServer/src/main/resources/db.properties"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
-        driverName = properties.getProperty("driver", "org.postgresql.Driver");
-        url = properties.getProperty("url", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
-        user = properties.getProperty("user", "subscript");
-        password = properties.getProperty("password", "111111");
-        poolSize = Integer.parseInt(properties.getProperty("poolsize", "5"));
+        driverName = "org.postgresql.Driver";
+        url = "jdbc:postgresql://127.0.0.1/Hashpal";
+        user = "hashpal";
+        password = "holokost";
+        poolSize = 16;
 
         initPoolData();
     }

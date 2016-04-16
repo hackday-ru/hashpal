@@ -35,7 +35,6 @@ public class Login {
         JSONObject jsonResponse = new JSONObject();
         String login;
         String password;
-        int code = 200;
         try {
             JSONObject requestBody = ((JSONObject) new JSONParser().parse(readRequestBody(request)));
             login = ((String) requestBody.get("login"));
