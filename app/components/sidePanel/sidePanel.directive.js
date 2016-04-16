@@ -33,12 +33,6 @@ class sidePanelController {
                 this.blockVkLogin = false;
                 utilsService.safeApply();
             }, (response) => {
-                toaster.pop({
-                    type: 'error',
-                    title: 'Ошибка ',
-                    body: 'errors.vkLoginError',
-                    timeout: 3000
-                });
                 console.warn(response);
                 this.blockVkLogin = false;
                 utilsService.safeApply();

@@ -60,5 +60,41 @@ export default class vkDataService {
                 });
             });
         };
+
+
+        this.addPost = (newPost, successCallback, failureCallback) => {
+            VK.Auth.getLoginStatus((response) => {
+                if (response.session && response.session.user) {
+
+
+                    VK.Api.call('wall.post', {
+                        owner_id: response.session.user.id,
+                        message: newPost.text + ' ' + newPost.tags,
+                        friends_only: 1
+                    }, (r) => {
+                        if (r.response) {
+                            if (angular.isFunction(successCallback)) {
+                                successCallback(r.response);
+                            }
+                            return;
+                        }
+                        if (angular.isFunction(failureCallback)) {
+                            failureCallback();
+                        }
+                    });
+
+                } else {
+                    //TODO: error dispatch
+                    if (angular.isFunction(failureCallback)) {
+
+                        failureCallback('vkNotLogged');
+                    }
+                }
+
+
+            });
+        };
+
+
     }
 }

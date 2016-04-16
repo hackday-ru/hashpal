@@ -1,14 +1,14 @@
 <div class="col-right">
-  <div class="posts">
-    <div class="posts-item"></div>
-    <div class="posts-item"></div>
-    <div class="posts-item"></div>
-    <div class="posts-item"></div>
-    <div class="posts-item"></div>
-    <div class="posts-item"></div>
-    <div class="posts-item"></div>
-    <div class="posts-item"></div>
-    <div class="posts-item"></div>
-    <div class="posts-item"></div>
-  </div>
+    <div>
+        <h2>Новый пост</h2>
+
+        <p>Прикрепленные файлы</p>
+
+        <p>Текст:</p>
+        <textarea ng-model="ctx.newPost.text" cols="100" rows="4"></textarea>
+
+        <p>Тэги:</p>
+        <textarea ng-model="ctx.newPost.tags" cols="100" rows="4"></textarea>
+        <button ng-click="ctx.sendPost()">Разместить пост</button>
+    </div>
 </div>
