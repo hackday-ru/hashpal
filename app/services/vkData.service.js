@@ -66,12 +66,13 @@ export default class vkDataService {
             VK.Auth.getLoginStatus((response) => {
                 if (response.session && response.session.user) {
 
-
                     VK.Api.call('wall.post', {
                         owner_id: response.session.user.id,
                         message: newPost.text + ' ' + newPost.tags,
+                        //TODO: ATTENTION TO FRIENDS ONLY
                         friends_only: 1
                     }, (r) => {
+                        console.log(r);
                         if (r.response) {
                             if (angular.isFunction(successCallback)) {
                                 successCallback(r.response);
@@ -79,14 +80,17 @@ export default class vkDataService {
                             return;
                         }
                         if (angular.isFunction(failureCallback)) {
-                            failureCallback();
+                            if (r.error && r.error.error_code == 15) {
+                                failureCallback('vkNotAccess');
+                            } else {
+                                failureCallback();
+                            }
                         }
                     });
 
                 } else {
                     //TODO: error dispatch
                     if (angular.isFunction(failureCallback)) {
-
                         failureCallback('vkNotLogged');
                     }
                 }

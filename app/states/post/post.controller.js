@@ -28,7 +28,7 @@ export default class postController {
                     toaster.pop({
                         type: 'error',
                         title: 'Ошибка ',
-                        body: errors.vkPostError,
+                        body: errors.vkPostErrorGeneral,
                         timeout: 3000
                     });
                 }
