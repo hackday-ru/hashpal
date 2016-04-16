@@ -45,6 +45,10 @@ public class LoginDispatcher {
         return true;
     }
 
+    public boolean isAuthorized(HttpSession session) {
+        return (!(session.getAttribute("user") == null));
+    }
+
     public String getSocialName(Long id) {
         return socials.getOrDefault(id, "unknown");
     }

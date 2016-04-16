@@ -23,14 +23,14 @@ public class TokenDAO {
 
     private ConnectionPool pool = ConnectionPool.getInstance();
 
-    public boolean addToken(Long userId, Long socialId, String token) {
+    public boolean addToken(Token token) {
         try(PooledConnection conn = PooledConnection.wrap(pool.takeConnection(),
                 pool.getFreeConnections(), pool.getReservedConnections())) {
             String sql = "INSERT INTO user_tokens (user_id, soc_id, token) VALUES (?,?,?);";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setLong(1, userId);
-            ps.setLong(2, socialId);
-            ps.setString(3, token);
+            ps.setLong(1, token.getUserID());
+            ps.setLong(2, token.getSocID());
+            ps.setString(3, token.getToken());
             if (ps.executeUpdate() == 0) throw new SQLException("Nothing was added");
         } catch (SQLException e) {
             e.printStackTrace();
