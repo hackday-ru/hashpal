@@ -9,20 +9,28 @@ export default class postItem {
                 post: '='
             },
             bindToController: {
-                post: '='
+                postItem: '='
             },
             templateUrl: './components/posts/postItem/postItem.template.html',
             link: ($scope) => {
                 //console.log($scope);
             },
             controller: postItemController,
-            controllerAs: "postItemCtrl"
+            controllerAs: "ctx"
         }
     }
 }
 
 class postItemController {
-    constructor() {
-        console.log(this.post);
+    constructor(hashtagParser) {
+        this.imgSrc = null;
+        if (this.postItem.attachments[0].type = 'photo' &&
+                Object.keys(this.postItem.attachments[0]).indexOf('photo') > -1) {
+            this.imgSrc = this.postItem.attachments[0].photo.photo_604;
+        }
+        let text = '',
+            tags = [];
+        [text, tags] = hashtagParser.cropTags(this.postItem.text);
+        console.log(this.postItem);
     }
 }

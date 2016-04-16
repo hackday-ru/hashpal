@@ -4,15 +4,16 @@ export default class vkDataService {
             apiId: networks.vk.appId
         });
 
-        this.retrievePostsByGeo = (successCallback, failureCallback) => {
-            let geo = navigator.geolocation.getCurrentPosition((geo) => {
+        this.retrievePostsByGeo = (shift, successCallback, failureCallback) => {
+            navigator.geolocation.getCurrentPosition((geo) => {
                 console.log(geo);
                 VK.Api.call('newsfeed.search', {
-                    latitude: geo.coords.latitude,
-                    longetude: geo.coords.longitude,
+                    // start_from: shift,
+                    // latitude: geo.coords.latitude,
+                    // longetude: geo.coords.longitude,
                     count: 100,
                     v: '5.50',
-                    start_time: geo.timestamp - 60000
+                    start_time: geo.timestamp - 30000
                 }, (r) => {
                     if (r.response) {
                         if (angular.isFunction(successCallback)) {
@@ -35,10 +36,8 @@ export default class vkDataService {
         };
 
         this.loginVk = (successCallback, failCallback) => {
-            //debugger;
             VK.Auth.getLoginStatus((response) => {
                 if (response.session && response.session.user) {
-                    //debugger;
                     if (angular.isFunction(successCallback)) {
                         successCallback(response.session.user);
                     }
@@ -51,7 +50,7 @@ export default class vkDataService {
                             failCallback(response);
                         }
                         return;
-                        //broadcast an error
+                        //TODO: broadcast an error
                     }
                     if (response.session) {
                         successCallback(response.session.user);

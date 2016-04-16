@@ -1,3 +1,5 @@
 <div class="col-right">
-  <posts ng-if="ctx.posts > 0" posts="ctx.posts"></posts>
+  <div ng-if="ctx.posts.length > 0">
+    <posts-list posts="ctx.posts"></posts-list>
+  </div>
 </div>
