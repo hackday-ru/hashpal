@@ -1,5 +1,5 @@
 export default class postController {
-    constructor($scope, $rootScope, vkDataService, toaster, errors) {
+    constructor($scope, $rootScope, vkDataService, toaster, errors, utilsService) {
         this.newPost = {
             text: "simple text",
             tags: "#hackday1"
@@ -9,6 +9,7 @@ export default class postController {
             //console.log(this.newPost)
             vkDataService.addPost(this.newPost, ()=> {
                 //TODO: add message service and replace 'пост отправлен' with message from a service
+                utilsService.safeApply();
                 toaster.pop({
                     type: 'success',
                     title: 'Ура! ',
@@ -18,6 +19,7 @@ export default class postController {
 
             }, (error)=> {
                 if (error) {
+                    utilsService.safeApply();
                     toaster.pop({
                         type: 'error',
                         title: 'Ошибка ',
@@ -25,6 +27,7 @@ export default class postController {
                         timeout: 3000
                     });
                 } else {
+                    utilsService.safeApply();
                     toaster.pop({
                         type: 'error',
                         title: 'Ошибка ',

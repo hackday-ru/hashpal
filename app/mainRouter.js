@@ -26,8 +26,8 @@ export default function mainRouter($stateProvider, $urlRouterProvider) {
         .state('home.post', {
             url: 'post',
             templateUrl: './states/post/post.template.html',
-            controller: ($scope, $rootScope, vkDataService, toaster, errors) =>
-                new postController($scope, $rootScope, vkDataService, toaster, errors),
+            controller: ($scope, $rootScope, vkDataService, toaster, errors, utilsService) =>
+                new postController($scope, $rootScope, vkDataService, toaster, errors, utilsService),
             controllerAs: 'ctx'
         });
 }
