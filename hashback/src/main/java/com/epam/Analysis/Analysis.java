@@ -48,7 +48,7 @@ public class Analysis {
                         rs.getString("hashtags"),
                         rs.getTimestamp("tStamp"),
                         rs.getFloat("lat"),
-                        rs.getFloat("long")
+                        rs.getFloat("lon")
                         ));
             }
 
