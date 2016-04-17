@@ -22,10 +22,18 @@ class navDirController {
         this.tag = 'skyporn';
 
         this.searchTag = () => {
-            this.tag = this.tag.split(" ")[0].replace("#", "");
+            debugger;
+            let tagsString = this.tag;
+            tagsString = tagsString.split(" ");
+            for (let i in tagsString) {
+                let item = tagsString[i];
+                tagsString[i] = item.replace('#', '');
+            }
+            let tags = tagsString.join();
+                // .replace("#", "");
             //$rooScope.broadcast();
             $state.go("home.search").then(()=> {
-                $rootScope.$emit("searchtag", "#" + this.tag);
+                $rootScope.$emit("searchtag", "#" + tags);
             });
         }
     }
