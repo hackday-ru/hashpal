@@ -24,18 +24,17 @@
             <div class="auth clearfix">
                 <input type="text" name="user" placeholder="Введите логин">
                 <input type="text" name="password" placeholder="Введите пароль">
-                <div class="half first"><button class="login" value="Вход">Bход</button></div>
-                <div class="half second"><button class="register" value="Регистрация">Регистрация</button></div>
+                <div class="half first"><button class="login cyan" value="Вход">Bход</button></div>
+                <div class="half second"><button class="register cyan" value="Регистрация">Регистрация</button></div>
             </div>
         </div>
 
-        <div class="user-box">
-            <div class="avatar">
-              <img ng-src="{{user.picSrc}}" />
-            </div>
-            <label>{{user.username}}</label>
-            <!--USER-->
-        </div>
+        <!--<div class="user-box">-->
+            <!--<div class="avatar">-->
+              <!--<img ng-src="{{user.picSrc}}" />-->
+            <!--</div>-->
+            <!--<label>{{user.username}}</label>-->
+        <!--</div>-->
     </div>
     <div class="side-bar-control">
         <button ng-click="sidePanelCtrl.toggleSidePanel()">
