@@ -8,7 +8,7 @@ export default class hackTagParser {
             let tags = text.match(/(^|\s)(#[a-z\d-]+)/ig);
             if (tags && tags.length > 0) {
                 for (let tag of tags) {
-                    text = text.slice(text.indexOf(tag), tag.length);
+                    text = text.slice(text.indexOf(tag), tag.length + 1);
                 }
             }
             return {

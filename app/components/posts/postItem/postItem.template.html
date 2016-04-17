@@ -5,7 +5,7 @@
     <div class="posts-item-text">{{ctx.postText}}</div>
     <div class="posts-item-tags" ng-if="ctx.postTags.length > 0">
         <i class="fa fa-tag" aria-hidden="true"></i>
-        <div class="tag" ng-repeat="tag in ctx.postTags">{{tag}}</div>
+        <div class="tag" ng-repeat="tag in ctx.postTags track by $index">{{tag}}</div>
     </div>
     <div class="posts-item-additional">
         <i class="fa fa-heart" aria-hidden="true"></i> <span class="likes">{{ctx.loises}}</span>
