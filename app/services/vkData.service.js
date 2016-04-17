@@ -8,12 +8,12 @@ export default class vkDataService {
             navigator.geolocation.getCurrentPosition((geo) => {
                 console.log(geo);
                 VK.Api.call('newsfeed.search', {
-                    // start_from: shift,
+                    q: '#hackday',
                     latitude: geo.coords.latitude,
                     longetude: geo.coords.longitude,
                     count: 100,
                     v: '5.50',
-                    start_time: geo.timestamp - 30000
+                    start_time: geo.timestamp - 60000
                 }, (r) => {
                     if (r.response) {
                         if (angular.isFunction(successCallback)) {
@@ -41,7 +41,6 @@ export default class vkDataService {
                     if (angular.isFunction(successCallback)) {
                         successCallback(response.session.user);
                     }
-                    //vkDataFactory.parseAuthRequest(response.session);
                     return;
                 }
                 VK.Auth.login((response) => {
@@ -64,7 +63,6 @@ export default class vkDataService {
         this.addPost = (newPost, successCallback, failureCallback) => {
             VK.Auth.getLoginStatus((response) => {
                 if (response.session && response.session.user) {
-
                     VK.Api.call('wall.post', {
                         owner_id: response.session.user.id,
                         message: newPost.text + ' ' + newPost.tags,
@@ -93,10 +91,7 @@ export default class vkDataService {
                         failureCallback('vkNotLogged');
                     }
                 }
-
             });
         };
-
-
     }
 }

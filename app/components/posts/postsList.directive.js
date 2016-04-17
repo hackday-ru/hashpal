@@ -23,14 +23,6 @@ export default class posts {
 
 class postsController {
     constructor(postsParser, hashtagParser) {
-        // this.confirmPosts = [];
-        // for (let item of this.posts) {
-        //     if (postsParser.hasText(item) && hashtagParser.hasTags(item.text)) {
-        //         this.confirmPosts.push(item);
-        //     }
-        // }
         this.confirmPosts = this.posts;
-        console.log(this.confirmPosts);
-        console.log(this.posts);
     }
 }

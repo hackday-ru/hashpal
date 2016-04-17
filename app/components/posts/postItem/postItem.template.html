@@ -3,12 +3,12 @@
         <img ng-src="{{ctx.imgSrc}}" class="img-responsive">
     </div>
     <div class="posts-item-text">{{ctx.postText}}</div>
-    <div class="posts-item-tags">
+    <div class="posts-item-tags" ng-if="ctx.postTags.length > 0">
         <i class="fa fa-tag" aria-hidden="true"></i>
         <div class="tag" ng-repeat="tag in ctx.postTags">{{tag}}</div>
     </div>
     <div class="posts-item-additional">
-        <i class="fa fa-heart" aria-hidden="true"></i> <span class="likes"></span>
-        <i class="fa fa-comment" aria-hidden="true"></i> <span class="comments"></span>
+        <i class="fa fa-heart" aria-hidden="true"></i> <span class="likes">{{ctx.loises}}</span>
+        <i class="fa fa-comment" aria-hidden="true"></i> <span class="comments">{{ctx.repastes}}</span>
     </div>
 </div>

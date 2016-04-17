@@ -24,13 +24,16 @@ export default class postItem {
 class postItemController {
     constructor(hashtagParser) {
         this.imgSrc = null;
-        if (this.postItem.attachments[0].type = 'photo' &&
+        if (this.postItem.attachments && this.postItem.attachments[0].type === 'photo' &&
                 Object.keys(this.postItem.attachments[0]).indexOf('photo') > -1) {
             this.imgSrc = this.postItem.attachments[0].photo.photo_604;
         }
         let obj = hashtagParser.cropTags(this.postItem.text);
         this.postText = obj.postText;
         this.postTags = obj.postTags;
+        this.loises = this.postItem.likes.count;
+        this.repastes = this.postItem.reposts.count;
+        // this.baseUrl = this.
         console.log(this.postItem);
     }
 }
