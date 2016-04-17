@@ -4,7 +4,9 @@
     <div class="flex-container top">
       <div class="first-item">
         <p>Прикрепленные файлы</p>
-        <div class="drag"></div>
+        <div class="drag">
+          <h2>Перенесите в эту область изображения,<br /> видео или аудио-файлы</h2>
+        </div>
         <p>Описание</p>
         <textarea name="Description" ng-model="ctx.newPost.text"></textarea>
       </div>
@@ -29,7 +31,7 @@
       </div>
 
       <div class="post-add second-item clearfix">
-        <div class="half first"><button class="add" ng-click="ctx.sendPost()">Разместить пост</button></div>
+        <div class="half first"><button class="add cyan" ng-click="ctx.sendPost()">Разместить пост</button></div>
         <div class="half second"><button class="cancel">Отмена</button></div>
       </div>
     </div>
