@@ -4,11 +4,12 @@ export default class vkDataService {
             apiId: networks.vk.appId
         });
 
-        this.retrievePostsByGeo = (shift, successCallback, failureCallback) => {
+        this.retrievePostsByGeo = (shift, tag, successCallback, failureCallback) => {
             navigator.geolocation.getCurrentPosition((geo) => {
                 console.log(geo);
                 VK.Api.call('newsfeed.search', {
-                    q: '#hackday',
+                    //q: '#hackday',
+                    q: tag,
                     latitude: geo.coords.latitude,
                     longetude: geo.coords.longitude,
                     count: 100,

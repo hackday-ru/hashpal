@@ -14,10 +14,10 @@
         <button ng-click=""><i class="fa fa-twitter" aria-hidden="true"></i> <span>Twitter</span></button>
         <button ng-click=""><i class="fa fa-instagram" aria-hidden="true"></i> <span>Instagram</span></button>
     </div>
-    <div ng-class="sidePanelCtrl.loginPaneOpened ? 'show' : 'hide'"
-         class="profile-box">
+    <div  ng-class="sidePanelCtrl.loginPaneOpened ? 'show' : 'hide'"
+         class="profile-box hide">
         <i class="fa fa-user" aria-hidden="true"></i>
-        <button ng-click='sidePanelCtrl.toggleLoginPane()'>
+        <button ng-if="false" ng-click='sidePanelCtrl.toggleLoginPane()'>
             <label>Логин/Регистрация</label>
         </button>
         <label>{{user.username}}</label>
