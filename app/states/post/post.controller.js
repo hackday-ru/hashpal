@@ -41,12 +41,16 @@ export default class postController {
 
 
         this.mapImgSrc = '';
+        this.hasGeo = '';
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 var latlon = position.coords.latitude + "," + position.coords.longitude;
+                this.hasGeo = 'yes';
                 this.mapImgSrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + latlon + "&zoom=14&size=400x300&sensor=false";
                 utilsService.safeApply();
             })
+        } else {
+            this.hasGeo = 'no';
         }
 
 
