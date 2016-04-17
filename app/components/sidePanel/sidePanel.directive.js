@@ -6,10 +6,12 @@ export default class sidePanel {
             name: 'sidePanel',
             restrict: 'E',
             scope: {
-                user: '='
+                user: '=',
+                sidePanelOpened: '='
             },
             bindToController: {
-                user: '='
+                user: '=',
+                sidePanelOpened: '='
             },
             templateUrl: './components/sidePanel/sidePanel.template.html',
             link: ($scope) => {
@@ -23,7 +25,7 @@ export default class sidePanel {
 
 class sidePanelController {
     constructor(vkDataService, fbDataService, utilsService, toaster, errors) {
-        this.loginPaneOpened = false;
+        // this.loginPaneOpened = false;
         this.loginVk = () => {
             this.blockVkLogin = true;
             console.log("clicked vk");
@@ -40,6 +42,10 @@ class sidePanelController {
             });
         };
 
+        this.toggleSidePanel = () => {
+            this.sidePanelOpened = !this.sidePanelOpened;
+        };
+        
         this.toggleLoginPane = () => {
             this.loginPaneOpened = !this.loginPaneOpened;
         };
@@ -47,8 +53,10 @@ class sidePanelController {
         this.loginFB = () => {
             this.blockFBLogin = true;
             fbDataService.fbLogin((response) => {
+                this.user.firstName = user.first_name;
+                this.user.lastName = user.last_name;
                 fbDataService.getUserPic(response.authResponse.userID, (url) => {
-                    this.userPicFb = url;
+                    this.user.picSrc = url;
                 });
                 this.fbLogged = true;
                 this.blockFBLogin = false;
