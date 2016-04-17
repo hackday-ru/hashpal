@@ -19,7 +19,7 @@ export default class navDir {
 class navDirController {
     constructor($rootScope, $state, utilsService) {
 
-        this.tag = 'skyporn';
+        this.tag = 'hackday';
 
         $rootScope.$on("puttaginnavbar", (event, tag)=> {
             console.log(tag);
