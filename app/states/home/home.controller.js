@@ -6,6 +6,7 @@ export default class homeController {
             lastName: '',
             photoSrc: ''
         };
+        this.sidePanelOpened = false;
 
         // if (VK.Auth.getSession()) {
         //     //https://vk.com/dev/wall.get

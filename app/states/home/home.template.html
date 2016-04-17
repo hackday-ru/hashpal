@@ -1,2 +1,4 @@
-<side-panel user="ctx.user" class="col-left"></side-panel>
+<side-panel ng-class="!!ctx.sidePanelOpened ? 'grow' : 'shrink'"
+            side-panel-opened="ctx.sidePanelOpened"
+            user="ctx.user" class="col-left"></side-panel>
 <div ui-view></div>
