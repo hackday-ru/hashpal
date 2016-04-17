@@ -32,7 +32,7 @@ class postItemController {
         this.postText = obj.postText;
         this.postTags = obj.postTags;
         this.loises = this.postItem.likes.count;
-        this.repastes = this.postItem.reposts.count;
+        this.repastes = this.postItem.comments.count;
         // this.baseUrl = this.
         // console.log(this.postItem);
     }

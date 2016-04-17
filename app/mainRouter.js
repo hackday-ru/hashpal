@@ -7,10 +7,11 @@ import homeController from './states/home/home.controller';
 import postController from './states/post/post.controller';
 
 export default function mainRouter($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/search');
     $stateProvider
         .state('home', {
             url: '/',
+            abstract: true,
             templateUrl: './states/home/home.template.html',
             controller: ($rootScope, vkDataService, utilsService) =>
                 new homeController($rootScope, vkDataService, utilsService),
