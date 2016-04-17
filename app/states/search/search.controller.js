@@ -1,21 +1,18 @@
 export default class searchController {
-    constructor(utilsService, $scope, $rootScope, vkDataService, hashtagParser, postsParser) {
+    constructor(utilsService, $scope, $rootScope, vkDataService, hashtagParser, postsParser, $timeout) {
         this.getPosts = () => {
             vkDataService.retrievePostsByGeo(this.count, (data) => {
                 for (let item of data.items) {
-                    console.log(item.text);
+                    // console.log(item.text);
                     if (postsParser.hasText(item)) {
-                        // if (hashtagParser.hasTags(item.text)) {
-                            this.posts.push(item);
-                        // }
+                        this.posts.push(item);
                     }
                 }
                 if (this.posts.length === 0) {
                     this.count += 100;
-                    this.getPosts();
+                    $timeout(this.getPosts, 400);
                 }
                 else {
-                    debugger;
                     utilsService.safeApply();
                 }
             }, (error) => {
@@ -28,6 +25,5 @@ export default class searchController {
         if ('geolocation' in navigator) {
             this.getPosts();
         }
-        else console.log('fuck off');
     }
 }

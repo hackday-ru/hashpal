@@ -34,6 +34,6 @@ class postItemController {
         this.loises = this.postItem.likes.count;
         this.repastes = this.postItem.reposts.count;
         // this.baseUrl = this.
-        console.log(this.postItem);
+        // console.log(this.postItem);
     }
 }

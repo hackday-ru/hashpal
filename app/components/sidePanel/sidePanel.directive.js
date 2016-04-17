@@ -22,15 +22,15 @@ export default class sidePanel {
 }
 
 class sidePanelController {
-    constructor(vkDataService, utilsService, toaster, errors) {
+    constructor(vkDataService, fbDataService, utilsService, toaster, errors) {
         this.loginVk = () => {
-
             this.blockVkLogin = true;
             console.log("clicked vk");
             vkDataService.loginVk((user) => {
                 this.user.firstName = user.first_name;
                 this.user.lastName = user.last_name;
                 this.blockVkLogin = false;
+                this.vkLogged = true;
                 utilsService.safeApply();
             }, (response) => {
                 console.warn(response);
@@ -38,5 +38,16 @@ class sidePanelController {
                 utilsService.safeApply();
             });
         };
+
+        this.loginFB = () => {
+            this.blockFBLogin = true;
+            fbDataService.fbLogin((response) => {
+                fbDataService.getUserPic(response.authResponse.userID, (url) => {
+                    this.userPicFb = url;
+                });
+                this.fbLogged = true;
+                this.blockFBLogin = false;
+            });
+        }
     }
 }
