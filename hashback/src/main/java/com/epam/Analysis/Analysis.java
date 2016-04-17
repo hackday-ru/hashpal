@@ -1,5 +1,6 @@
-package com.epam.Analysis;
+/*package com.epam.Analysis;
 
+import com.epam.Common.StringToHashtags;
 import com.epam.DBController.ConnectionPool.ConnectionPool;
 import com.epam.DBController.ConnectionPool.PooledConnection;
 import com.epam.DBController.Entities.Post;
@@ -8,13 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-/**
- * Created by vrama on 16.04.2016.
- */
+
 public class Analysis {
     private static Analysis ourInstance = new Analysis();
 
@@ -27,8 +24,10 @@ public class Analysis {
 
     private ConnectionPool pool = ConnectionPool.getInstance();
 
-    public List<Post> byTime(Timestamp time, int days) {
-        List<Post> sortedByTimePosts = new ArrayList<>();
+    public List<String> byTime(Timestamp time, int days) {
+        List<String> sortedByTimeHash = new ArrayList<>();
+        Map<String, Integer> hashCCounter = new HashMap<>();
+
 
         try(PooledConnection conn = PooledConnection.wrap(pool.takeConnection(),
                 pool.getFreeConnections(), pool.getReservedConnections())) {
@@ -43,26 +42,33 @@ public class Analysis {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
-                sortedByTimePosts.add(new Post(
-                        rs.getLong("id"),
-                        rs.getLong("social_Id"),
-                        rs.getString("post_Id"),
-                        rs.getString("hashtags"),
-                        rs.getTimestamp("tstamp"),
-                        rs.getFloat("lat"),
-                        rs.getFloat("lon")
-                        ));
+                StringToHashtags.proceed(rs.getString("hashtags"));
+
+                sortedByTimeHash.add(StringToHashtags.proceed(rs.getString("hashtags")));
+
             }
 
-
-            if (!rs.next()) throw new SQLException();
 
         } catch (SQLException e) {
             e.printStackTrace();
             return Collections.emptyList();
         }
 
-        return sortedByTimePosts;
+        for (String tempHash:sortedByTimeHash) {
+            if (!hashCCounter.containsKey(tempHash)) {
+                hashCCounter.put(tempHash, 1);
+            } else {
+                hashCCounter.put(tempHash, hashCCounter.get(tempHash)+1);
+            }
+        }
+
+        for (Map.Entry<String, Integer> entry : hashCCounter.entrySet()) {
+
+            System.out.println("Hash = " + entry.getKey() + ", Повторений = " + entry.getValue());
+        }
+
+
+        return sortedByTimeHash;
     }
 
     public List<Post> byPlace() {
@@ -75,3 +81,4 @@ public class Analysis {
 
 
 }
+*/
