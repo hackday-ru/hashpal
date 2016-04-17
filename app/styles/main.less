@@ -164,14 +164,13 @@ side-panel {
   }
 }
 .profile-box {
-  position: relative;
-  z-index: 3;
   .flex;
   .align-items(center);
   .flex-wrap;
   //height: @heightIcons;
   padding: 15px 10px;
   background-color: @colorAdditional;
+  overflow: hidden;
 
   span {
     display: block;
@@ -272,8 +271,7 @@ side-panel {
 }
 
 .side-bar-control {
-  position: relative;
-  z-index: 5;
+  display: none;
   height: @heightIcons;
   .flex;
   .align-items(center);
@@ -464,6 +462,9 @@ side-panel {
       }
       -webkit-animation: widthShrink 1.5s forwards; /* Chrome, Safari, Opera */
       animation: widthShrink 1.5s forwards;
+    }
+    .side-bar-control {
+      display: block;
     }
   }
 }
