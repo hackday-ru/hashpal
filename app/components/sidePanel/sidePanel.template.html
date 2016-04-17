@@ -16,18 +16,24 @@
     </div>
     <div ng-class="sidePanelCtrl.loginPaneOpened ? 'show' : 'hide'"
          class="profile-box">
-        <i class="fa fa-user" aria-hidden="true"></i>
-        <button ng-click='sidePanelCtrl.toggleLoginPane()'>
-            <label>Логин/Регистрация</label>
-        </button>
-        <!--<span><label>{{user.firstName}}</label>-->
-        <!--<label>{{user.lastName}}</label></span>-->
-        <!--USER-->
-        <div class="auth clearfix">
-            <input type="text" name="user" placeholder="Введите логин">
-            <input type="text" name="password" placeholder="Введите пароль">
-            <div class="half first"><button class="login" value="Вход">Bход</button></div>
-            <div class="half second"><button class="register" value="Регистрация">Регистрация</button></div>
+        <div class="login-box">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <button ng-click='sidePanelCtrl.toggleLoginPane()'>
+                <label>Логин/Регистрация</label>
+            </button>
+            <div class="auth clearfix">
+                <input type="text" name="user" placeholder="Введите логин">
+                <input type="text" name="password" placeholder="Введите пароль">
+                <div class="half first"><button class="login" value="Вход">Bход</button></div>
+                <div class="half second"><button class="register" value="Регистрация">Регистрация</button></div>
+            </div>
+        </div>
+
+        <div class="user-box">
+            <div class="ava"></div>
+            <label>{{user.firstName}}</label>
+            <label>{{user.lastName}}</label>
+            <!--USER-->
         </div>
     </div>
     <div class="side-bar-control">
