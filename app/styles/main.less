@@ -17,6 +17,18 @@ body {
 button {
   width: 100%;
   background: transparent;
+
+  &.cyan {
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: @colorAdditional;
+    transition: background-color 2s ease-out;
+    cursor: pointer;
+
+    &:hover {
+      background-color: @colorMain;
+    }
+  }
 }
 p {
   margin-bottom: 15px;
@@ -204,8 +216,6 @@ side-panel {
     button {
       width: 86px;
       height: 40px;
-      color: #fff;
-      border: 1px solid #fff;
       .login {
         background-color: darken(@colorAdditional, 10%);
       }
@@ -234,6 +244,8 @@ side-panel {
   .user-box {
     .flex;
     .align-items(center);
+    height: @heightIcons;
+
     .avatar {
       min-width: @widthIcons;
       flex-basis: @widthIcons;
@@ -263,6 +275,7 @@ side-panel {
     font-size: @fontSizeIcons;
     text-align: center;
   }
+
 }
 .social-buttons {
   .flex-grow(1);
@@ -380,6 +393,10 @@ side-panel {
     }
     i {
       padding-right: 10px;
+      color: @colorMain;
+      &:hover {
+        color: darken( @colorMain, 5%);
+      }
     }
     input {
       flex-basis: 180px;
@@ -394,10 +411,7 @@ side-panel {
 
     button {
       height: @heightIcons;
-      &.add {
-        background-color: @colorAdditional;
-        color: #fff;
-      }
+
       &.cancel {
         color: @colorDark;
         text-decoration: underline;
@@ -408,6 +422,15 @@ side-panel {
 .drag {
   background-color: darken(@colorLight,5%);
   min-height: 200px;
+  padding: 0 10px;
+  .flex;
+  .justify-content(center);
+  .align-items(center);
+
+  h2 {
+    margin-bottom: 0;
+    text-align: center;
+  }
 }
 .map {
   padding: 15px;
@@ -429,6 +452,10 @@ side-panel {
   }
   .col-right {
     margin-left: @widthIcons;
+
+    .first-item {
+      padding-right: 0;
+    }
 
     .second-item {
       flex-basis: 100%;
