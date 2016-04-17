@@ -44,8 +44,8 @@ public class AddPost {
                     (String) jsonRequest.get("postId"),
                     (String) jsonRequest.get("hashtags"),
                     new Timestamp((Long) jsonRequest.get("timestamp")),
-                    (Float) jsonRequest.get("lat"),
-                    (Float) jsonRequest.get("lon"));
+                    (double) jsonRequest.get("lat"),
+                    (double) jsonRequest.get("lon"));
         } catch (ParseException e) {
             jsonResponse.put("result", "bad request");
             return Response.status(400).entity(jsonResponse.toJSONString()).build();
