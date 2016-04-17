@@ -15,26 +15,10 @@ public class Post {
     String postId;
     String hashtags;
     Timestamp time;
-    Float lat;
-    Float lon;
+    Double lat;
+    Double lon;
 
-    public Float getLat() {
-        return lat;
-    }
-
-    public void setLat(Float lat) {
-        this.lat = lat;
-    }
-
-    public Float getLon() {
-        return lon;
-    }
-
-    public void setLon(Float lon) {
-        this.lon = lon;
-    }
-
-    public Post(Long socialId, String postId, String hashtags, Timestamp time, Float lat, Float lon) {
+    public Post(Long socialId, String postId, String hashtags, Timestamp time, Double lat, Double lon) {
         this.socialId = socialId;
         this.postId = postId;
         this.hashtags = hashtags;
@@ -43,7 +27,7 @@ public class Post {
         this.lon = lon;
     }
 
-    public Post(Long id, Long socialId, String postId, String hashtags, Timestamp time, Float lat, Float lon) {
+    public Post(Long id, Long socialId, String postId, String hashtags, Timestamp time, Double lat, Double lon) {
 
         this.id = id;
         this.socialId = socialId;
@@ -51,6 +35,22 @@ public class Post {
         this.hashtags = hashtags;
         this.time = time;
         this.lat = lat;
+        this.lon = lon;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public void setLon(Double lon) {
         this.lon = lon;
     }
 

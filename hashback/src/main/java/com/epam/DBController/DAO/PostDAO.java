@@ -30,8 +30,8 @@ public class PostDAO {
             ps.setString(2, post.getPostId());
             ps.setString(3, post.getHashtags());
             ps.setTimestamp(4, post.getTime());
-            ps.setFloat(5, post.getLat());
-            ps.setFloat(6, post.getLon());
+            ps.setDouble(5, post.getLat());
+            ps.setDouble(6, post.getLon());
             if (ps.executeUpdate() == 0) throw new SQLException("Nothing was added");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,11 +52,11 @@ public class PostDAO {
             if (!rs.next()) throw new SQLException();
 
             return new Post(rs.getLong("id"), rs.getLong("social_id"), rs.getString("post_id"), rs.getString("hashtags"),
-                    rs.getTimestamp("tstamp"), rs.getFloat("lat"), rs.getFloat("lon"));
+                    rs.getTimestamp("tstamp"), rs.getDouble("lat"), rs.getDouble("lon"));
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return new Post(0L, 0L, "", "", new Timestamp(0), 0.0f, 0.0f);
+            return new Post(0L, 0L, "", "", new Timestamp(0), 0.0, 0.0);
         }
     }
 
