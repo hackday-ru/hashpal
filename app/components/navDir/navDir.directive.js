@@ -22,7 +22,6 @@ class navDirController {
         this.tag = 'skyporn';
 
         this.searchTag = () => {
-            debugger;
             let tagsString = this.tag;
             tagsString = tagsString.split(" ");
             for (let i in tagsString) {
