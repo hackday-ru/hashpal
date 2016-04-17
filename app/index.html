@@ -15,16 +15,17 @@
 
 <div ng-app="app">
     <toaster-container toaster-options="{'time-out': 3000, 'close-button': true}"></toaster-container>
-    <div class="nav clearfix">
-        <div class="col-left logo">
-            <div class="logo-img"><img src="img/logo2x.png" alt="#hashpal"></div>
-            <span>hashpal</span>
-        </div>
-        <div class="col-right search">
-            <div class="search-box">
-                <input type="text"> <button ui-sref="home.search"><i class="fa fa-search" aria-hidden="true"></i></button>
-            </div>
-        </div>
-    </div>
+    <!--<div class="nav clearfix">-->
+        <!--<div class="col-left logo">-->
+            <!--<div class="logo-img"><img src="img/logo2x.png" alt="#hashpal"></div>-->
+            <!--<span>hashpal</span>-->
+        <!--</div>-->
+        <!--<div class="col-right search">-->
+            <!--<div class="search-box">-->
+                <!--<input type="text"> <button ui-sref="home.search"><i class="fa fa-search" aria-hidden="true"></i></button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <nav-dir></nav-dir>
     <div ui-view class="container"></div>
 </div>
