@@ -1,5 +1,6 @@
 package com.epam.REST.Resources.Posts;
 
+import com.epam.Common.LoginDispatcher;
 import com.epam.Common.RequestReader;
 import com.epam.DBController.DAOFactory;
 import com.epam.DBController.Entities.Post;
@@ -40,15 +41,21 @@ public class AddPost {
         try {
             JSONObject jsonRequest = (JSONObject) new JSONParser().parse(RequestReader.readRequestBody(requestContext));
             post = new Post(
-                    (Long) jsonRequest.get("socialId"),
+                    LoginDispatcher.getInstance().getSocialId((String) jsonRequest.get("socialId")),
                     (String) jsonRequest.get("postId"),
                     (String) jsonRequest.get("hashtags"),
                     new Timestamp((Long) jsonRequest.get("timestamp")),
-                    (double) jsonRequest.get("lat"),
-                    (double) jsonRequest.get("lon"));
+                    (Double) jsonRequest.get("lat"),
+                    (Double) jsonRequest.get("lon"));
         } catch (ParseException e) {
             jsonResponse.put("result", "bad request");
             return Response.status(400).entity(jsonResponse.toJSONString()).build();
+        }
+        if (!DAOFactory.getPostDAO().addPost(post)) {
+            jsonResponse.put("result", "Nothing was added");
+        }
+        else {
+            jsonResponse.put("result", "Success");
         }
         return Response.ok().entity(jsonResponse.toJSONString()).build();
     }
