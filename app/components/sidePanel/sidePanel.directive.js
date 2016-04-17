@@ -24,8 +24,18 @@ export default class sidePanel {
 }
 
 class sidePanelController {
-    constructor(vkDataService, fbDataService, utilsService, toaster, errors) {
-        // this.loginPaneOpened = false;
+    constructor(vkDataService, fbDataService, utilsService, toaster, errors, $state) {
+
+        this.state = $state;
+        this.navigate = () => {
+            if ($state.current.name === 'home.post') {
+                $state.go('home.search');
+            }
+            else {
+                $state.go('home.post');
+            }
+        };
+
         this.loginVk = () => {
             this.blockVkLogin = true;
             console.log("clicked vk");

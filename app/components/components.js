@@ -4,8 +4,8 @@ import posts from './posts/postsList.directive.js';
 import navDir from './navDir/navDir.directive.js';
 
 angular.module('components', [])
-    .directive('sidePanel', (vkDataService, fbDataService, utilsService, toaster, errors) =>
-        new sidePanel(vkDataService, fbDataService, utilsService, toaster, errors))
+    .directive('sidePanel', (vkDataService, fbDataService, utilsService, toaster, errors, $state) =>
+        new sidePanel(vkDataService, fbDataService, utilsService, toaster, errors, $state))
     .directive('postsList', (postsParser, hashtagParser) =>
         new posts(postsParser, hashtagParser))
     .directive('postItem', ($rootScope, hashtagParser) => new postItem($rootScope, hashtagParser))
