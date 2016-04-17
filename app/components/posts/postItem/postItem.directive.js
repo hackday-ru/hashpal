@@ -22,7 +22,7 @@ export default class postItem {
 }
 
 class postItemController {
-    constructor(hashtagParser) {
+    constructor($rootScope, hashtagParser) {
         this.imgSrc = null;
         if (this.postItem.attachments && this.postItem.attachments[0].type === 'photo' &&
                 Object.keys(this.postItem.attachments[0]).indexOf('photo') > -1) {
@@ -33,6 +33,10 @@ class postItemController {
         this.postTags = obj.postTags;
         this.loises = this.postItem.likes.count;
         this.repastes = this.postItem.comments.count;
+
+        this.searchByTag = (tag) => {
+            $rootScope.$emit("puttaginnavbar", tag);
+        };
         // this.baseUrl = this.
         // console.log(this.postItem);
     }

@@ -6,6 +6,7 @@ export default class searchController {
             this.count = 0;
             this.getPosts(data);
         });
+
         this.getPosts = (tag) => {
             vkDataService.retrievePostsByGeo(this.count, tag, (data) => {
                 for (let item of data.items) {

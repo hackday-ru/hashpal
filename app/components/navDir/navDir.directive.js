@@ -17,9 +17,20 @@ export default class navDir {
 }
 
 class navDirController {
-    constructor($rootScope, $state) {
+    constructor($rootScope, $state, utilsService) {
 
         this.tag = 'skyporn';
+
+        $rootScope.$on("puttaginnavbar", (event, tag)=> {
+            tag = tag.split(" ")[0].replace("#", "");
+            this.tag = tag;
+            utilsService.safeApply();
+            //$rooScope.broadcast();
+            $state.go("home.search").then(()=> {
+                $rootScope.$emit("searchtag", "#" + tag);
+            });
+        });
+
 
         this.searchTag = () => {
             this.tag = this.tag.split(" ")[0].replace("#", "");
