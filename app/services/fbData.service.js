@@ -15,8 +15,28 @@ export default class fbDataService {
         };
 
         // this.retrievePostsByGeo = () => {
-        //     FB.api('', )
+        //     FB.api(
+        //         "?fields={fieldname_of_type_Location}",
+        //         function (response) {
+        //             if (response && !response.error) {
+        //                 /* handle the result */
+        //             }
+        //         }
+        //     );
         // };
+
+        this.getUserName = (userId, callback) => {
+            FB.api(
+                "/" + userId, (response) => {
+                    if (response && !response.error) {
+                        if (angular.isFunction(callback)) {
+                            callback(response.name);
+                        }
+                    }
+                    //TODO: handle error
+                }
+            );
+        };
 
         this.getUserPic = (userID, callback) => {
             FB.api("/" + userID + '/picture', (response) => {
@@ -38,7 +58,7 @@ export default class fbDataService {
                 }
                 else {
                     FB.login((response) => {
-                        debugger;
+                        // debugger;
                         if (response.status === 'connected') {
                             if (angular.isFunction(callback)) {
                                 callback(response);

@@ -20,7 +20,8 @@
         <button ng-click='sidePanelCtrl.toggleLoginPane()'>
             <label>Логин/Регистрация</label>
         </button>
-        <!--<span><label>{{user.firstName}}</label>-->
+        <label>{{user.username}}</label>
+        <img ng-src="{{user.picSrc}}" />
         <!--<label>{{user.lastName}}</label></span>-->
         <!--USER-->
         <div class="auth clearfix">
