@@ -164,10 +164,7 @@ side-panel {
   }
 }
 .profile-box {
-  .flex;
-  .align-items(center);
-  .flex-wrap;
-  padding: 15px 10px;
+  padding: 15px 0;
   background-color: @colorAdditional;
   overflow: hidden;
 
@@ -200,6 +197,7 @@ side-panel {
 
   .auth {
     height: 0;
+    padding: 0 10px;
     input:first-child {
       margin-top: 15px;
     }
@@ -224,6 +222,30 @@ side-panel {
     .auth{
       -webkit-animation: hide 1.5s forwards; /* Chrome, Safari, Opera */
       animation: hide 1.5s forwards;
+    }
+  }
+
+  .login-box {
+    .flex;
+    .align-items(center);
+    .flex-wrap;
+  }
+
+  .user-box {
+    .flex;
+    .align-items(center);
+    .avatar {
+      min-width: @widthIcons;
+      flex-basis: @widthIcons;
+      text-align: center;
+      img {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+      }
     }
   }
 }
@@ -433,8 +455,6 @@ side-panel {
     }
   }
   .profile-box {
-    padding-left: 0;
-    padding-right: 0;
     label, .auth {
       display: none;
     }
@@ -446,8 +466,6 @@ side-panel {
         display: block;
       }
       .profile-box {
-        padding-left: 10px;
-        padding-right: 10px;
         label, .auth {
           display: block;
         }
@@ -460,8 +478,6 @@ side-panel {
         display: none;
       }
       .profile-box {
-        padding-left: 0;
-        padding-right: 0;
         label, .auth {
           display: none;
         }
