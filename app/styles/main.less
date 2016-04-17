@@ -160,11 +160,13 @@ side-panel {
   }
 }
 .profile-box {
+  position: relative;
+  z-index: 3;
   .flex;
   .align-items(center);
   .flex-wrap;
-  min-height: @heightIcons;
-  padding: 15px 0;
+  //height: @heightIcons;
+  padding: 15px 10px;
   background-color: @colorAdditional;
 
   span {
@@ -196,15 +198,24 @@ side-panel {
   }
 
   .auth {
-    padding: 15px 10px 12px;
     height: 0;
-    opacity: 0;
+    input:first-child {
+      margin-top: 15px;
+    }
   }
 
-    &.register .auth{
-      animation: heightChange 5s;
-      opacity: 1;
+  &.show {
+    .auth{
+      -webkit-animation: show 5s forwards; /* Chrome, Safari, Opera */
+      animation: show 5s forwards;
     }
+  }
+  &.hide {
+    .auth{
+      -webkit-animation: hide 5s forwards; /* Chrome, Safari, Opera */
+      animation: hide 5s forwards;
+    }
+  }
 }
 .post-add {
   height: @heightIcons;
@@ -256,6 +267,8 @@ side-panel {
 }
 
 .side-bar-control {
+  position: relative;
+  z-index: 5;
   height: @heightIcons;
   .flex;
   .align-items(center);
@@ -286,6 +299,7 @@ side-panel {
       padding: 5px 10px;
       .flex();
       .align-items(center);
+      .flex-wrap;
 
       i {
         margin-right: 10px;
