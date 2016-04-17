@@ -11,7 +11,9 @@
         <textarea name="Description" ng-model="ctx.newPost.text"></textarea>
       </div>
       <div class="map second-item">
-        <p>Гео-тег</p>
+        <p ng-show="ctx.mapImgSrc">Гео-тег</p>
+        <p ng-hide="ctx.mapImgSrc">Гео-локация не поддерживается</p>
+        <img ng-src="{{ctx.mapImgSrc}}">
       </div>
     </div>
 

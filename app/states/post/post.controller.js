@@ -38,5 +38,17 @@ export default class postController {
 
             });
         };
+
+
+        this.mapImgSrc = '';
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                var latlon = position.coords.latitude + "," + position.coords.longitude;
+                this.mapImgSrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + latlon + "&zoom=14&size=400x300&sensor=false";
+                utilsService.safeApply();
+            })
+        }
+
+
     }
 }
