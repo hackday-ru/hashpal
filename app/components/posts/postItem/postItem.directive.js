@@ -26,7 +26,6 @@ class postItemController {
         this.imgSrc = null;
         if (this.postItem.attachments && this.postItem.attachments[0].type === 'video') {
             this.imgSrc = this.postItem.attachments[0].video.photo_320;
-            debugger;
         }
         if (this.postItem.attachments && this.postItem.attachments[0].type === 'photo' &&
                 Object.keys(this.postItem.attachments[0]).indexOf('photo') > -1) {

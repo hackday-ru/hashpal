@@ -22,10 +22,11 @@ class navDirController {
         this.tag = 'skyporn';
 
         $rootScope.$on("puttaginnavbar", (event, tag)=> {
-            tag = tag.split(" ")[0].replace("#", "");
+            console.log(tag);
+            if(!tag) return;
+            tag = tag.replace(" ", "").split(" ")[0].replace("#", "");
             this.tag = tag;
-            utilsService.safeApply();
-            //$rooScope.broadcast();
+            //utilsService.safeApply();
             $state.go("home.search").then(()=> {
                 $rootScope.$emit("searchtag", "#" + tag);
             });
