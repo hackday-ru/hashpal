@@ -167,14 +167,18 @@ side-panel {
   .flex;
   .align-items(center);
   .flex-wrap;
-  //height: @heightIcons;
   padding: 15px 10px;
   background-color: @colorAdditional;
   overflow: hidden;
 
-  span {
+  button {
+    width: auto;
+  }
+
+  label {
     display: block;
     .flex-grow(1);
+    color: #fff;
   }
 
   i {
@@ -194,17 +198,19 @@ side-panel {
     }
   }
 
-  button {
-    width: 86px;
-    height: 40px;
-    color: #fff;
-    border: 1px solid #fff;
-  }
-
   .auth {
     height: 0;
     input:first-child {
       margin-top: 15px;
+    }
+    button {
+      width: 86px;
+      height: 40px;
+      color: #fff;
+      border: 1px solid #fff;
+      .login {
+        background-color: darken(@colorAdditional, 10%);
+      }
     }
   }
 
@@ -273,10 +279,10 @@ side-panel {
 .side-bar-control {
   display: none;
   height: @heightIcons;
-  .flex;
-  .align-items(center);
-  .justify-content(center);
-  i { color: #ccc; }
+  i {
+    color: #ccc;
+    font-size: 20px;
+  }
 }
 
 .posts {
@@ -429,7 +435,7 @@ side-panel {
   .profile-box {
     padding-left: 0;
     padding-right: 0;
-    span, .auth {
+    label, .auth {
       display: none;
     }
   }
@@ -442,7 +448,7 @@ side-panel {
       .profile-box {
         padding-left: 10px;
         padding-right: 10px;
-        span, .auth {
+        label, .auth {
           display: block;
         }
       }
@@ -456,7 +462,7 @@ side-panel {
       .profile-box {
         padding-left: 0;
         padding-right: 0;
-        span, .auth {
+        label, .auth {
           display: none;
         }
       }
@@ -464,7 +470,9 @@ side-panel {
       animation: widthShrink 1.5s forwards;
     }
     .side-bar-control {
-      display: block;
+      .flex;
+      .align-items(center);
+      .justify-content(center);
     }
   }
 }
