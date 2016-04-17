@@ -12,7 +12,7 @@ export default class vkDataService {
                     q: tag,
                     latitude: geo.coords.latitude,
                     longetude: geo.coords.longitude,
-                    count: 100,
+                    count: 200,
                     v: '5.50',
                     start_time: geo.timestamp - 60000
                 }, (r) => {
