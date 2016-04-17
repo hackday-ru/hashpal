@@ -30,8 +30,7 @@ class sidePanelController {
             this.blockVkLogin = true;
             console.log("clicked vk");
             vkDataService.loginVk((user) => {
-                this.user.firstName = user.first_name;
-                this.user.lastName = user.last_name;
+                this.user.username = user.first_name + ' ' + user.last_name;
                 this.blockVkLogin = false;
                 this.vkLogged = true;
                 utilsService.safeApply();
@@ -53,8 +52,9 @@ class sidePanelController {
         this.loginFB = () => {
             this.blockFBLogin = true;
             fbDataService.fbLogin((response) => {
-                this.user.firstName = user.first_name;
-                this.user.lastName = user.last_name;
+                fbDataService.getUserName(response.authResponse.userID, (username) => {
+                    this.user.username = username;
+                });
                 fbDataService.getUserPic(response.authResponse.userID, (url) => {
                     this.user.picSrc = url;
                 });
