@@ -33,7 +33,9 @@
     </div>
     <div class="side-bar-control">
         <button ng-click="sidePanelCtrl.toggleSidePanel()">
-            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            <i class="fa"
+               ng-class="sidePanelCtrl.sidePanelOpened ? 'fa-angle-double-left' : 'fa-angle-double-right'"
+               aria-hidden="true"></i>
             <!--<i class="fa fa-angle-double-right" aria-hidden="true"></i>-->
         </button>
     </div>
