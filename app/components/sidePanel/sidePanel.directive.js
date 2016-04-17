@@ -23,6 +23,7 @@ export default class sidePanel {
 
 class sidePanelController {
     constructor(vkDataService, fbDataService, utilsService, toaster, errors) {
+        this.loginPaneOpened = false;
         this.loginVk = () => {
             this.blockVkLogin = true;
             console.log("clicked vk");
@@ -37,6 +38,10 @@ class sidePanelController {
                 this.blockVkLogin = false;
                 utilsService.safeApply();
             });
+        };
+
+        this.toggleLoginPane = () => {
+            this.loginPaneOpened = !this.loginPaneOpened;
         };
 
         this.loginFB = () => {
