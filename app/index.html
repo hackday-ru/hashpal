@@ -14,7 +14,6 @@
 
 <div ng-app="app">
     <toaster-container toaster-options="{'time-out': 3000, 'close-button': true}"></toaster-container>
-    <button ui-sref="home.search">search</button>
     <div class="nav clearfix">
         <div class="col-left logo">
             <div class="logo-img"><img src="img/logo2x.png" alt="#hashpal"></div>
@@ -22,7 +21,7 @@
         </div>
         <div class="col-right search">
             <div class="search-box">
-                <input type="text"> <i class="fa fa-search" aria-hidden="true"></i>
+                <input type="text"> <button ui-sref="home.search"><i class="fa fa-search" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>

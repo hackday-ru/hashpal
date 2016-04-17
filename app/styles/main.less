@@ -107,6 +107,10 @@ h2 {
         font-size: @fontSizeIcons;
         padding-right: 15px;
       }
+
+      button {
+        width: auto;
+      }
     }
   }
 
@@ -117,7 +121,6 @@ h2 {
 .container {
   position: relative;
   height: ~'calc(100vh - 60px)';
-  margin-top: 60px;
 }
 .col {
   &-left {
@@ -153,7 +156,8 @@ h2 {
   }
 }
 side-panel {
-  top: 75px;
+  top: 60px;
+  overflow: hidden;
 
   .post-add {
     cursor: pointer;
@@ -170,6 +174,7 @@ side-panel {
   background-color: @colorAdditional;
 
   span {
+    display: block;
     .flex-grow(1);
   }
 
@@ -206,14 +211,14 @@ side-panel {
 
   &.show {
     .auth{
-      -webkit-animation: show 5s forwards; /* Chrome, Safari, Opera */
-      animation: show 5s forwards;
+      -webkit-animation: show 1.5s forwards; /* Chrome, Safari, Opera */
+      animation: show 1.5s forwards;
     }
   }
   &.hide {
     .auth{
-      -webkit-animation: hide 5s forwards; /* Chrome, Safari, Opera */
-      animation: hide 5s forwards;
+      -webkit-animation: hide 1.5s forwards; /* Chrome, Safari, Opera */
+      animation: hide 1.5s forwards;
     }
   }
 }
@@ -273,10 +278,11 @@ side-panel {
   .flex;
   .align-items(center);
   .justify-content(center);
+  i { color: #ccc; }
 }
 
 .posts {
-  padding: 20px;
+  padding: (@heightHeader+20px) 20px 20px;
   .column(3);
   -webkit-column-gap: 20px;
   -moz-column-gap: 20px;
@@ -319,7 +325,7 @@ side-panel {
 }
 
 .post {
-  padding: 20px;
+  padding: (@heightHeader+20px) 20px 20px;
   
   textarea {
     width: 100%;
@@ -386,6 +392,7 @@ side-panel {
   display: inline-block;
   padding: 5px;
   margin-right: 10px;
+  margin-bottom: 3px;
   border: 1px @colorMain solid;
   color: @colorMain;
 }
@@ -419,6 +426,44 @@ side-panel {
           order: 1;
         }
       }
+    }
+  }
+  .profile-box {
+    padding-left: 0;
+    padding-right: 0;
+    span, .auth {
+      display: none;
+    }
+  }
+
+  side-panel {
+    &.grow {
+      .logo span, .post-add span, .social-buttons span {
+        display: block;
+      }
+      .profile-box {
+        padding-left: 10px;
+        padding-right: 10px;
+        span, .auth {
+          display: block;
+        }
+      }
+      -webkit-animation: widthGrow 1.5s forwards; /* Chrome, Safari, Opera */
+      animation: widthGrow 1.5s forwards;
+    }
+    &.shrink {
+      .logo span, .post-add span, .social-buttons span {
+        display: none;
+      }
+      .profile-box {
+        padding-left: 0;
+        padding-right: 0;
+        span, .auth {
+          display: none;
+        }
+      }
+      -webkit-animation: widthShrink 1.5s forwards; /* Chrome, Safari, Opera */
+      animation: widthShrink 1.5s forwards;
     }
   }
 }
