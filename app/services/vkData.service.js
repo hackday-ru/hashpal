@@ -8,7 +8,6 @@ export default class vkDataService {
             navigator.geolocation.getCurrentPosition((geo) => {
                 console.log(geo);
                 VK.Api.call('newsfeed.search', {
-                    //q: '#hackday',
                     q: tag,
                     latitude: geo.coords.latitude,
                     longetude: geo.coords.longitude,

@@ -8,6 +8,6 @@ angular.module('components', [])
         new sidePanel(vkDataService, fbDataService, utilsService, toaster, errors))
     .directive('postsList', (postsParser, hashtagParser) =>
         new posts(postsParser, hashtagParser))
-    .directive('postItem', (hashtagParser) => new postItem(hashtagParser))
-    .directive('navDir', ($rootScope, $state) => new navDir($rootScope, $state));
+    .directive('postItem', ($rootScope, hashtagParser) => new postItem($rootScope, hashtagParser))
+    .directive('navDir', ($rootScope, $state, utilsService) => new navDir($rootScope, $state, utilsService));
 
