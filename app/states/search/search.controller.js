@@ -1,5 +1,11 @@
 export default class searchController {
     constructor(utilsService, $scope, $rootScope, vkDataService, hashtagParser, postsParser, $timeout) {
+
+        $rootScope.$on("searchtag", (event, data)=> {
+            this.posts = [];
+            this.count = 0;
+            this.getPosts(data);
+        });
         this.getPosts = (tag) => {
             vkDataService.retrievePostsByGeo(this.count, tag, (data) => {
                 for (let item of data.items) {
@@ -22,8 +28,8 @@ export default class searchController {
         console.log('search');
         this.posts = [];
         this.count = 0;
-        if ('geolocation' in navigator) {
-            this.getPosts("#skyporn");
-        }
+        //if ('geolocation' in navigator) {
+        //    this.getPosts("#skyporn");
+        //}
     }
 }
